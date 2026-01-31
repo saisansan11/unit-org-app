@@ -98,16 +98,6 @@ class UnitOrgApp extends StatelessWidget {
           ),
         ),
 
-        // Card theme
-        cardTheme: CardThemeData(
-          color: AppColors.surface,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSizes.radiusM),
-            side: const BorderSide(color: AppColors.border),
-          ),
-        ),
-
         // Elevated button theme
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -143,19 +133,6 @@ class UnitOrgApp extends StatelessWidget {
         iconButtonTheme: IconButtonThemeData(
           style: IconButton.styleFrom(
             foregroundColor: AppColors.textPrimary,
-          ),
-        ),
-
-        // Dialog theme
-        dialogTheme: DialogThemeData(
-          backgroundColor: AppColors.surface,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSizes.radiusL),
-          ),
-          titleTextStyle: GoogleFonts.prompt(
-            fontSize: AppSizes.fontXL,
-            fontWeight: FontWeight.w600,
-            color: AppColors.textPrimary,
           ),
         ),
 

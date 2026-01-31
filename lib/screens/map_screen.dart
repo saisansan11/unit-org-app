@@ -185,7 +185,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      AppColors.signalCorps.withValues(alpha: 0.15),
+                      AppColors.signalCorps.withOpacity(0.15),
                       Colors.transparent,
                     ],
                   ),
@@ -202,7 +202,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      AppColors.primary.withValues(alpha: 0.1),
+                      AppColors.primary.withOpacity(0.1),
                       Colors.transparent,
                     ],
                   ),
@@ -314,8 +314,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                 gradient: isSelected
                     ? LinearGradient(
                         colors: [
-                          (region['color'] as Color).withValues(alpha: 0.3),
-                          (region['color'] as Color).withValues(alpha: 0.15),
+                          (region['color'] as Color).withOpacity(0.3),
+                          (region['color'] as Color).withOpacity(0.15),
                         ],
                       )
                     : null,
@@ -329,7 +329,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                 boxShadow: isSelected
                     ? [
                         BoxShadow(
-                          color: (region['color'] as Color).withValues(alpha: 0.2),
+                          color: (region['color'] as Color).withOpacity(0.2),
                           blurRadius: 8,
                         ),
                       ]
@@ -376,7 +376,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
         border: Border.all(color: AppColors.border),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.2),
+            color: Colors.black.withOpacity(0.2),
             blurRadius: 20,
             offset: const Offset(0, 4),
           ),
@@ -484,7 +484,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
               end: Alignment.bottomRight,
               colors: [
                 unit.color,
-                unit.color.withValues(alpha: 0.8),
+                unit.color.withOpacity(0.8),
               ],
             ),
             shape: BoxShape.circle,
@@ -494,7 +494,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
             ),
             boxShadow: [
               BoxShadow(
-                color: unit.color.withValues(alpha: isSelected ? 0.6 : 0.4),
+                color: unit.color.withOpacity(isSelected ? 0.6 : 0.4),
                 blurRadius: isSelected ? 16 : 8,
                 spreadRadius: isSelected ? 2 : 0,
               ),
@@ -516,7 +516,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
               border: Border.all(color: unit.color, width: 1.5),
               boxShadow: [
                 BoxShadow(
-                  color: unit.color.withValues(alpha: 0.3),
+                  color: unit.color.withOpacity(0.3),
                   blurRadius: 8,
                 ),
               ],
@@ -539,12 +539,12 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: 0.95),
+        color: AppColors.surface.withOpacity(0.95),
         borderRadius: BorderRadius.circular(AppSizes.radiusL),
         border: Border.all(color: AppColors.border),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.2),
+            color: Colors.black.withOpacity(0.2),
             blurRadius: 12,
           ),
         ],
@@ -591,13 +591,13 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
             height: 14,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [color, color.withValues(alpha: 0.7)],
+                colors: [color, color.withOpacity(0.7)],
               ),
               shape: BoxShape.circle,
               border: Border.all(color: Colors.white54, width: 1),
               boxShadow: [
                 BoxShadow(
-                  color: color.withValues(alpha: 0.3),
+                  color: color.withOpacity(0.3),
                   blurRadius: 4,
                 ),
               ],
@@ -639,7 +639,7 @@ class _UnitDetailSheet extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: unit.color.withValues(alpha: 0.2),
+                color: unit.color.withOpacity(0.2),
                 blurRadius: 30,
                 offset: const Offset(0, -10),
               ),
@@ -703,13 +703,13 @@ class _UnitDetailSheet extends StatelessWidget {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                unit.color.withValues(alpha: 0.1),
-                                unit.color.withValues(alpha: 0.05),
+                                unit.color.withOpacity(0.1),
+                                unit.color.withOpacity(0.05),
                               ],
                             ),
                             borderRadius: BorderRadius.circular(AppSizes.radiusM),
                             border: Border.all(
-                              color: unit.color.withValues(alpha: 0.3),
+                              color: unit.color.withOpacity(0.3),
                             ),
                           ),
                           child: Row(
@@ -719,7 +719,7 @@ class _UnitDetailSheet extends StatelessWidget {
                                 width: 26,
                                 height: 26,
                                 decoration: BoxDecoration(
-                                  color: unit.color.withValues(alpha: 0.2),
+                                  color: unit.color.withOpacity(0.2),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Center(
@@ -775,13 +775,13 @@ class _UnitDetailSheet extends StatelessWidget {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    childUnit.color.withValues(alpha: 0.15),
-                                    childUnit.color.withValues(alpha: 0.08),
+                                    childUnit.color.withOpacity(0.15),
+                                    childUnit.color.withOpacity(0.08),
                                   ],
                                 ),
                                 borderRadius: BorderRadius.circular(AppSizes.radiusFull),
                                 border: Border.all(
-                                  color: childUnit.color.withValues(alpha: 0.3),
+                                  color: childUnit.color.withOpacity(0.3),
                                 ),
                               ),
                               child: Row(
@@ -791,7 +791,7 @@ class _UnitDetailSheet extends StatelessWidget {
                                     width: 20,
                                     height: 20,
                                     decoration: BoxDecoration(
-                                      color: childUnit.color.withValues(alpha: 0.3),
+                                      color: childUnit.color.withOpacity(0.3),
                                       shape: BoxShape.circle,
                                     ),
                                     child: Icon(
@@ -839,13 +839,13 @@ class _UnitDetailSheet extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            unit.color.withValues(alpha: 0.15),
-            unit.color.withValues(alpha: 0.05),
+            unit.color.withOpacity(0.15),
+            unit.color.withOpacity(0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(AppSizes.radiusXL),
         border: Border.all(
-          color: unit.color.withValues(alpha: 0.3),
+          color: unit.color.withOpacity(0.3),
         ),
       ),
       child: Row(
@@ -859,14 +859,14 @@ class _UnitDetailSheet extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  unit.color.withValues(alpha: 0.4),
-                  unit.color.withValues(alpha: 0.2),
+                  unit.color.withOpacity(0.4),
+                  unit.color.withOpacity(0.2),
                 ],
               ),
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: unit.color.withValues(alpha: 0.3),
+                  color: unit.color.withOpacity(0.3),
                   blurRadius: 20,
                 ),
               ],
@@ -1023,12 +1023,12 @@ class _InfoCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            color.withValues(alpha: 0.15),
-            color.withValues(alpha: 0.05),
+            color.withOpacity(0.15),
+            color.withOpacity(0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(AppSizes.radiusL),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
+        border: Border.all(color: color.withOpacity(0.3)),
       ),
       child: Row(
         children: [
@@ -1036,7 +1036,7 @@ class _InfoCard extends StatelessWidget {
             width: compact ? 36 : 42,
             height: compact ? 36 : 42,
             decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.2),
+              color: color.withOpacity(0.2),
               borderRadius: BorderRadius.circular(AppSizes.radiusM),
             ),
             child: Icon(icon, color: color, size: compact ? 18 : 22),
@@ -1087,12 +1087,12 @@ class ThailandMapPainter extends CustomPainter {
     ).createShader(rect);
 
     final borderPaint = Paint()
-      ..color = AppColors.signalCorps.withValues(alpha: 0.3)
+      ..color = AppColors.signalCorps.withOpacity(0.3)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
 
     final glowPaint = Paint()
-      ..color = AppColors.signalCorps.withValues(alpha: 0.1)
+      ..color = AppColors.signalCorps.withOpacity(0.1)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 8
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8);
@@ -1163,7 +1163,7 @@ class ThailandMapPainter extends CustomPainter {
       textPainter.text = TextSpan(
         text: label,
         style: TextStyle(
-          color: AppColors.textMuted.withValues(alpha: 0.6),
+          color: AppColors.textMuted.withOpacity(0.6),
           fontSize: 11,
           fontWeight: FontWeight.w500,
           letterSpacing: 0.5,

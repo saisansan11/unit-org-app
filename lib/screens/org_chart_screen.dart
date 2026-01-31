@@ -194,7 +194,7 @@ class _OrgChartScreenState extends State<OrgChartScreen>
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      AppColors.signalCorps.withValues(alpha: 0.15),
+                      AppColors.signalCorps.withOpacity(0.15),
                       Colors.transparent,
                     ],
                   ),
@@ -213,7 +213,7 @@ class _OrgChartScreenState extends State<OrgChartScreen>
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  AppColors.primary.withValues(alpha: 0.1),
+                  AppColors.primary.withOpacity(0.1),
                   Colors.transparent,
                 ],
               ),
@@ -268,7 +268,7 @@ class _OrgChartScreenState extends State<OrgChartScreen>
               height: 44,
               decoration: BoxDecoration(
                 color: _showSearch
-                    ? AppColors.primary.withValues(alpha: 0.2)
+                    ? AppColors.primary.withOpacity(0.2)
                     : AppColors.surface,
                 borderRadius: BorderRadius.circular(AppSizes.radiusM),
                 border: Border.all(
@@ -326,7 +326,7 @@ class _OrgChartScreenState extends State<OrgChartScreen>
                   border: Border.all(color: AppColors.borderLight),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.1),
+                      color: AppColors.primary.withOpacity(0.1),
                       blurRadius: 12,
                     ),
                   ],
@@ -430,7 +430,7 @@ class _OrgChartScreenState extends State<OrgChartScreen>
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: unit.branch.color.withValues(alpha: 0.15),
+                    color: unit.branch.color.withOpacity(0.15),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
@@ -454,7 +454,7 @@ class _OrgChartScreenState extends State<OrgChartScreen>
                               vertical: 2,
                             ),
                             decoration: BoxDecoration(
-                              color: unit.branch.color.withValues(alpha: 0.15),
+                              color: unit.branch.color.withOpacity(0.15),
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(
@@ -559,7 +559,7 @@ class _OrgChartScreenState extends State<OrgChartScreen>
         padding: const EdgeInsets.all(AppSizes.paddingM),
         decoration: BoxDecoration(
           color: isSelected
-              ? unit.branch.color.withValues(alpha: 0.15)
+              ? unit.branch.color.withOpacity(0.15)
               : AppColors.surface,
           borderRadius: BorderRadius.circular(AppSizes.radiusL),
           border: Border.all(
@@ -569,13 +569,13 @@ class _OrgChartScreenState extends State<OrgChartScreen>
           boxShadow: [
             if (isSelected)
               BoxShadow(
-                color: unit.branch.color.withValues(alpha: 0.3),
+                color: unit.branch.color.withOpacity(0.3),
                 blurRadius: 16,
                 spreadRadius: 0,
               )
             else
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
+                color: Colors.black.withOpacity(0.2),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -593,13 +593,13 @@ class _OrgChartScreenState extends State<OrgChartScreen>
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        unit.branch.color.withValues(alpha: 0.3),
-                        unit.branch.color.withValues(alpha: 0.15),
+                        unit.branch.color.withOpacity(0.3),
+                        unit.branch.color.withOpacity(0.15),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(AppSizes.radiusFull),
                     border: Border.all(
-                      color: unit.branch.color.withValues(alpha: 0.3),
+                      color: unit.branch.color.withOpacity(0.3),
                     ),
                   ),
                   child: Text(
@@ -616,7 +616,7 @@ class _OrgChartScreenState extends State<OrgChartScreen>
                     width: 20,
                     height: 20,
                     decoration: BoxDecoration(
-                      color: AppColors.success.withValues(alpha: 0.2),
+                      color: AppColors.success.withOpacity(0.2),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -638,14 +638,14 @@ class _OrgChartScreenState extends State<OrgChartScreen>
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    unit.branch.color.withValues(alpha: 0.2),
-                    unit.branch.color.withValues(alpha: 0.1),
+                    unit.branch.color.withOpacity(0.2),
+                    unit.branch.color.withOpacity(0.1),
                   ],
                 ),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: unit.branch.color.withValues(alpha: 0.2),
+                    color: unit.branch.color.withOpacity(0.2),
                     blurRadius: 12,
                   ),
                 ],
@@ -718,12 +718,12 @@ class _OrgChartScreenState extends State<OrgChartScreen>
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     color: isExpanded
-                        ? unit.branch.color.withValues(alpha: 0.2)
+                        ? unit.branch.color.withOpacity(0.2)
                         : AppColors.surfaceLight,
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: isExpanded
-                          ? unit.branch.color.withValues(alpha: 0.5)
+                          ? unit.branch.color.withOpacity(0.5)
                           : AppColors.border,
                     ),
                   ),
@@ -792,8 +792,8 @@ class _OrgChartScreenState extends State<OrgChartScreen>
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            AppColors.signalCorps.withValues(alpha: 0.5),
-            AppColors.signalCorps.withValues(alpha: 0.2),
+            AppColors.signalCorps.withOpacity(0.5),
+            AppColors.signalCorps.withOpacity(0.2),
           ],
         ),
         borderRadius: BorderRadius.circular(2),
@@ -870,7 +870,7 @@ class _UnitDetailSheet extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: unit.branch.color.withValues(alpha: 0.2),
+                color: unit.branch.color.withOpacity(0.2),
                 blurRadius: 30,
                 offset: const Offset(0, -10),
               ),
@@ -904,13 +904,13 @@ class _UnitDetailSheet extends StatelessWidget {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            unit.branch.color.withValues(alpha: 0.15),
-                            unit.branch.color.withValues(alpha: 0.05),
+                            unit.branch.color.withOpacity(0.15),
+                            unit.branch.color.withOpacity(0.05),
                           ],
                         ),
                         borderRadius: BorderRadius.circular(AppSizes.radiusXL),
                         border: Border.all(
-                          color: unit.branch.color.withValues(alpha: 0.3),
+                          color: unit.branch.color.withOpacity(0.3),
                         ),
                       ),
                       child: Row(
@@ -924,14 +924,14 @@ class _UnitDetailSheet extends StatelessWidget {
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                                 colors: [
-                                  unit.branch.color.withValues(alpha: 0.3),
-                                  unit.branch.color.withValues(alpha: 0.15),
+                                  unit.branch.color.withOpacity(0.3),
+                                  unit.branch.color.withOpacity(0.15),
                                 ],
                               ),
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: unit.branch.color.withValues(alpha: 0.3),
+                                  color: unit.branch.color.withOpacity(0.3),
                                   blurRadius: 20,
                                 ),
                               ],
@@ -1055,13 +1055,13 @@ class _UnitDetailSheet extends StatelessWidget {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                AppColors.success.withValues(alpha: 0.1),
-                                AppColors.success.withValues(alpha: 0.05),
+                                AppColors.success.withOpacity(0.1),
+                                AppColors.success.withOpacity(0.05),
                               ],
                             ),
                             borderRadius: BorderRadius.circular(AppSizes.radiusM),
                             border: Border.all(
-                              color: AppColors.success.withValues(alpha: 0.3),
+                              color: AppColors.success.withOpacity(0.3),
                             ),
                           ),
                           child: Row(
@@ -1071,7 +1071,7 @@ class _UnitDetailSheet extends StatelessWidget {
                                 width: 28,
                                 height: 28,
                                 decoration: BoxDecoration(
-                                  color: AppColors.success.withValues(alpha: 0.2),
+                                  color: AppColors.success.withOpacity(0.2),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Center(
@@ -1121,13 +1121,13 @@ class _UnitDetailSheet extends StatelessWidget {
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
-                                  unit.branch.color.withValues(alpha: 0.15),
-                                  unit.branch.color.withValues(alpha: 0.08),
+                                  unit.branch.color.withOpacity(0.15),
+                                  unit.branch.color.withOpacity(0.08),
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(AppSizes.radiusFull),
                               border: Border.all(
-                                color: unit.branch.color.withValues(alpha: 0.3),
+                                color: unit.branch.color.withOpacity(0.3),
                               ),
                             ),
                             child: Row(
@@ -1214,12 +1214,12 @@ class _InfoCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            color.withValues(alpha: 0.15),
-            color.withValues(alpha: 0.05),
+            color.withOpacity(0.15),
+            color.withOpacity(0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(AppSizes.radiusL),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
+        border: Border.all(color: color.withOpacity(0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1228,7 +1228,7 @@ class _InfoCard extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.2),
+              color: color.withOpacity(0.2),
               borderRadius: BorderRadius.circular(AppSizes.radiusM),
             ),
             child: Icon(icon, color: color, size: 22),

@@ -105,7 +105,7 @@ class AppColors {
   static List<BoxShadow> glowShadow(Color color, {double blur = 20, double spread = 0}) {
     return [
       BoxShadow(
-        color: color.withValues(alpha: 0.4),
+        color: color.withOpacity(0.4),
         blurRadius: blur,
         spreadRadius: spread,
       ),
@@ -114,7 +114,7 @@ class AppColors {
 
   static List<BoxShadow> softShadow = [
     BoxShadow(
-      color: Colors.black.withValues(alpha: 0.3),
+      color: Colors.black.withOpacity(0.3),
       blurRadius: 12,
       offset: const Offset(0, 4),
     ),
@@ -122,7 +122,7 @@ class AppColors {
 
   static List<BoxShadow> elevatedShadow = [
     BoxShadow(
-      color: Colors.black.withValues(alpha: 0.4),
+      color: Colors.black.withOpacity(0.4),
       blurRadius: 24,
       offset: const Offset(0, 8),
     ),
@@ -406,12 +406,12 @@ class GlassDecoration {
       color: AppColors.surface,
       borderRadius: BorderRadius.circular(borderRadius),
       border: Border.all(
-        color: glowColor.withValues(alpha: 0.3),
+        color: glowColor.withOpacity(0.3),
         width: 1,
       ),
       boxShadow: [
         BoxShadow(
-          color: glowColor.withValues(alpha: 0.2),
+          color: glowColor.withOpacity(0.2),
           blurRadius: 20,
           spreadRadius: 0,
         ),

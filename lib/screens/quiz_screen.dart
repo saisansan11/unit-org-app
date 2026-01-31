@@ -247,7 +247,7 @@ class _QuizScreenState extends State<QuizScreen>
                   gradient: RadialGradient(
                     colors: [
                       (isCorrect ? AppColors.success : AppColors.primary)
-                          .withValues(alpha: 0.15 + (_pulseController.value * 0.1)),
+                          .withOpacity(0.15 + (_pulseController.value * 0.1)),
                       Colors.transparent,
                     ],
                   ),
@@ -268,7 +268,7 @@ class _QuizScreenState extends State<QuizScreen>
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  AppColors.accent.withValues(alpha: 0.1),
+                  AppColors.accent.withOpacity(0.1),
                   Colors.transparent,
                 ],
               ),
@@ -323,13 +323,13 @@ class _QuizScreenState extends State<QuizScreen>
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppColors.success.withValues(alpha: 0.2),
-                  AppColors.success.withValues(alpha: 0.1),
+                  AppColors.success.withOpacity(0.2),
+                  AppColors.success.withOpacity(0.1),
                 ],
               ),
               borderRadius: BorderRadius.circular(AppSizes.radiusFull),
               border: Border.all(
-                color: AppColors.success.withValues(alpha: 0.3),
+                color: AppColors.success.withOpacity(0.3),
               ),
             ),
             child: Row(
@@ -384,7 +384,7 @@ class _QuizScreenState extends State<QuizScreen>
                         borderRadius: BorderRadius.circular(AppSizes.radiusFull),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.primary.withValues(alpha: 0.5),
+                            color: AppColors.primary.withOpacity(0.5),
                             blurRadius: 8,
                           ),
                         ],
@@ -442,8 +442,8 @@ class _QuizScreenState extends State<QuizScreen>
           border: Border.all(
             color: _answered
                 ? (_selectedAnswer == question.correctIndex
-                    ? AppColors.success.withValues(alpha: 0.5)
-                    : AppColors.error.withValues(alpha: 0.5))
+                    ? AppColors.success.withOpacity(0.5)
+                    : AppColors.error.withOpacity(0.5))
                 : AppColors.border,
             width: 2,
           ),
@@ -451,9 +451,9 @@ class _QuizScreenState extends State<QuizScreen>
             BoxShadow(
               color: _answered
                   ? (_selectedAnswer == question.correctIndex
-                      ? AppColors.success.withValues(alpha: 0.15)
-                      : AppColors.error.withValues(alpha: 0.15))
-                  : Colors.black.withValues(alpha: 0.2),
+                      ? AppColors.success.withOpacity(0.15)
+                      : AppColors.error.withOpacity(0.15))
+                  : Colors.black.withOpacity(0.2),
               blurRadius: 20,
               offset: const Offset(0, 4),
             ),
@@ -469,10 +469,10 @@ class _QuizScreenState extends State<QuizScreen>
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    color: AppColors.warning.withValues(alpha: 0.15),
+                    color: AppColors.warning.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(AppSizes.radiusFull),
                     border: Border.all(
-                      color: AppColors.warning.withValues(alpha: 0.3),
+                      color: AppColors.warning.withOpacity(0.3),
                     ),
                   ),
                   child: Row(
@@ -496,10 +496,10 @@ class _QuizScreenState extends State<QuizScreen>
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.15),
+                    color: AppColors.primary.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(AppSizes.radiusFull),
                     border: Border.all(
-                      color: AppColors.primary.withValues(alpha: 0.3),
+                      color: AppColors.primary.withOpacity(0.3),
                     ),
                   ),
                   child: Text(
@@ -548,20 +548,20 @@ class _QuizScreenState extends State<QuizScreen>
 
           if (showResult) {
             if (isCorrect) {
-              bgColor = AppColors.success.withValues(alpha: 0.15);
+              bgColor = AppColors.success.withOpacity(0.15);
               borderColor = AppColors.success;
               textColor = AppColors.textPrimary;
               letterBgColor = AppColors.success;
               letterColor = Colors.white;
             } else if (isSelected && !isCorrect) {
-              bgColor = AppColors.error.withValues(alpha: 0.15);
+              bgColor = AppColors.error.withOpacity(0.15);
               borderColor = AppColors.error;
               textColor = AppColors.textPrimary;
               letterBgColor = AppColors.error;
               letterColor = Colors.white;
             }
           } else if (isSelected) {
-            bgColor = AppColors.primary.withValues(alpha: 0.15);
+            bgColor = AppColors.primary.withOpacity(0.15);
             borderColor = AppColors.primary;
             letterBgColor = AppColors.primary;
             letterColor = Colors.white;
@@ -581,7 +581,7 @@ class _QuizScreenState extends State<QuizScreen>
                   boxShadow: isSelected || (showResult && isCorrect)
                       ? [
                           BoxShadow(
-                            color: borderColor.withValues(alpha: 0.2),
+                            color: borderColor.withOpacity(0.2),
                             blurRadius: 12,
                             offset: const Offset(0, 4),
                           ),
@@ -601,7 +601,7 @@ class _QuizScreenState extends State<QuizScreen>
                         boxShadow: isSelected || (showResult && isCorrect)
                             ? [
                                 BoxShadow(
-                                  color: letterBgColor.withValues(alpha: 0.4),
+                                  color: letterBgColor.withOpacity(0.4),
                                   blurRadius: 8,
                                 ),
                               ]
@@ -693,13 +693,13 @@ class _QuizScreenState extends State<QuizScreen>
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.info.withValues(alpha: 0.15),
-            AppColors.info.withValues(alpha: 0.08),
+            AppColors.info.withOpacity(0.15),
+            AppColors.info.withOpacity(0.08),
           ],
         ),
         borderRadius: BorderRadius.circular(AppSizes.radiusL),
         border: Border.all(
-          color: AppColors.info.withValues(alpha: 0.3),
+          color: AppColors.info.withOpacity(0.3),
         ),
       ),
       child: Row(
@@ -709,7 +709,7 @@ class _QuizScreenState extends State<QuizScreen>
             width: 36,
             height: 36,
             decoration: BoxDecoration(
-              color: AppColors.info.withValues(alpha: 0.2),
+              color: AppColors.info.withOpacity(0.2),
               shape: BoxShape.circle,
             ),
             child: const Icon(
@@ -765,7 +765,7 @@ class _QuizScreenState extends State<QuizScreen>
             boxShadow: [
               BoxShadow(
                 color: (isLastQuestion ? AppColors.accent : AppColors.primary)
-                    .withValues(alpha: 0.4),
+                    .withOpacity(0.4),
                 blurRadius: 20,
                 offset: const Offset(0, 8),
               ),
@@ -887,7 +887,7 @@ class _CelebrationPainter extends CustomPainter {
 
     for (final particle in _particles) {
       final opacity = (1 - progress) * 0.8;
-      paint.color = color.withValues(alpha: opacity);
+      paint.color = color.withOpacity(opacity);
 
       final x = size.width * particle.x +
           math.cos(particle.angle) * progress * 100 * particle.speed;
@@ -1031,14 +1031,14 @@ class _QuizResultSheetState extends State<_QuizResultSheet>
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          resultColor.withValues(alpha: 0.3),
-                          resultColor.withValues(alpha: 0.1),
+                          resultColor.withOpacity(0.3),
+                          resultColor.withOpacity(0.1),
                         ],
                       ),
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: resultColor.withValues(alpha: 0.3),
+                          color: resultColor.withOpacity(0.3),
                           blurRadius: 30,
                           spreadRadius: 5,
                         ),
@@ -1202,7 +1202,7 @@ class _QuizResultSheetState extends State<_QuizResultSheet>
                                 color: (widget.passed
                                         ? AppColors.accent
                                         : AppColors.primary)
-                                    .withValues(alpha: 0.4),
+                                    .withOpacity(0.4),
                                 blurRadius: 12,
                                 offset: const Offset(0, 4),
                               ),

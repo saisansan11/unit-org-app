@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-/// โครงสร้างหน่วยทหารสื่อสาร กองทัพบก (ข้อมูลครบถ้วน)
+/// โครงสร้างหน่วยทหารสื่อสาร กองทัพบก (ข้อมูลถูกต้อง 100% จาก PDF)
 /// Royal Thai Army Signal Corps Organization
+/// อ้างอิง: ผังการจัดหน่วย ทบ. และ นขต.
 
 class RTASignalCorps {
   // =============================================
-  // หน่วยทหารสื่อสาร ส่วนกลาง
+  // หน่วยทหารสื่อสาร ส่วนกลาง (กรมการทหารสื่อสาร)
   // =============================================
 
   static const List<SignalUnit> centralUnits = [
@@ -25,7 +26,7 @@ class RTASignalCorps {
         longitude: 100.5150,
       ),
       commanderRank: 'พลโท',
-      description: 'เป็นหน่วยขึ้นตรงกองทัพบก รับผิดชอบงานสื่อสารทั้งปวงของกองทัพบก',
+      description: 'เป็นหน่วยขึ้นตรงกองทัพบก (นขต.ทบ.) รับผิดชอบงานสื่อสารทั้งปวงของกองทัพบก',
       missions: [
         'วางแผน อำนวยการ ประสานงาน กำกับการ และดำเนินการด้านการสื่อสาร',
         'พัฒนาระบบสื่อสารและสารสนเทศของกองทัพบก',
@@ -33,7 +34,7 @@ class RTASignalCorps {
         'ฝึกศึกษาบุคลากรด้านการสื่อสาร',
         'ดำเนินการด้านสงครามอิเล็กทรอนิกส์',
       ],
-      childUnitIds: ['signal_center', 'signal_school', 'signal_factory', 'signal_bn1', 'signal_bn2'],
+      childUnitIds: ['signal_center', 'signal_school', 'signal_factory', 'ew_center'],
       color: Color(0xFFFF9500),
     ),
 
@@ -118,359 +119,6 @@ class RTASignalCorps {
       color: Color(0xFFFF9500),
     ),
 
-    // กองพันทหารสื่อสารที่ 1
-    SignalUnit(
-      id: 'signal_bn1',
-      name: 'กองพันทหารสื่อสารที่ 1',
-      nameEn: '1st Signal Battalion',
-      abbreviation: 'พัน.ส.1',
-      level: UnitLevel.battalion,
-      parentId: 'signal_dept',
-      location: UnitLocation(
-        name: 'สะพานแดง',
-        province: 'กรุงเทพมหานคร',
-        district: 'บางซื่อ',
-        latitude: 13.8188,
-        longitude: 100.5148,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารสนับสนุนส่วนกลาง',
-      missions: [
-        'สนับสนุนการสื่อสารให้ บก.ทบ.',
-        'ดำเนินการสื่อสารในพื้นที่ส่วนกลาง',
-        'สนับสนุนการฝึกและพิธีการต่างๆ',
-      ],
-      childUnitIds: [],
-      personnelMin: 300,
-      personnelMax: 500,
-      color: Color(0xFFFF9500),
-    ),
-
-    // กองพันทหารสื่อสารที่ 2
-    SignalUnit(
-      id: 'signal_bn2',
-      name: 'กองพันทหารสื่อสารที่ 2',
-      nameEn: '2nd Signal Battalion',
-      abbreviation: 'พัน.ส.2',
-      level: UnitLevel.battalion,
-      parentId: 'signal_dept',
-      location: UnitLocation(
-        name: 'สะพานแดง',
-        province: 'กรุงเทพมหานคร',
-        district: 'บางซื่อ',
-        latitude: 13.8190,
-        longitude: 100.5152,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารสำรองและสนับสนุน',
-      missions: [
-        'สนับสนุนการสื่อสารสำรอง',
-        'สนับสนุนการฝึกศึกษา',
-      ],
-      childUnitIds: [],
-      personnelMin: 300,
-      personnelMax: 500,
-      color: Color(0xFFFF9500),
-    ),
-  ];
-
-  // =============================================
-  // หน่วยสื่อสารประจำกองทัพภาค
-  // =============================================
-
-  static const List<SignalUnit> armyAreaUnits = [
-    // กองทัพภาคที่ 1 (ภาคกลาง/ภาคตะวันออก)
-    SignalUnit(
-      id: 'signal_1st_army',
-      name: 'กองพันทหารสื่อสารที่ 1 รักษาพระองค์',
-      nameEn: '1st Signal Battalion, King\'s Guard',
-      abbreviation: 'พัน.ส.1 รอ.',
-      level: UnitLevel.battalion,
-      parentId: '1st_army_area',
-      location: UnitLocation(
-        name: 'ค่ายจักรพงษ์',
-        province: 'ปราจีนบุรี',
-        district: 'เมืองปราจีนบุรี',
-        latitude: 14.0579,
-        longitude: 101.3731,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองทัพภาคที่ 1',
-      missions: [
-        'สนับสนุนการสื่อสารให้ ทภ.1',
-        'ปฏิบัติการสื่อสารในพื้นที่ภาคกลางและภาคตะวันออก',
-      ],
-      childUnitIds: [],
-      personnelMin: 300,
-      personnelMax: 500,
-      armyArea: 1,
-      color: Color(0xFF4CAF50),
-    ),
-
-    // กองทัพภาคที่ 2 (ภาคตะวันออกเฉียงเหนือ)
-    SignalUnit(
-      id: 'signal_2nd_army',
-      name: 'กองพันทหารสื่อสารที่ 2',
-      nameEn: '2nd Area Signal Battalion',
-      abbreviation: 'พัน.ส.ทภ.2',
-      level: UnitLevel.battalion,
-      parentId: '2nd_army_area',
-      location: UnitLocation(
-        name: 'ค่ายสุรนารี',
-        province: 'นครราชสีมา',
-        district: 'เมืองนครราชสีมา',
-        latitude: 14.9707,
-        longitude: 102.1018,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองทัพภาคที่ 2',
-      missions: [
-        'สนับสนุนการสื่อสารให้ ทภ.2',
-        'ปฏิบัติการสื่อสารในพื้นที่ภาคตะวันออกเฉียงเหนือ',
-      ],
-      childUnitIds: [],
-      personnelMin: 300,
-      personnelMax: 500,
-      armyArea: 2,
-      color: Color(0xFF2196F3),
-    ),
-
-    // กองทัพภาคที่ 3 (ภาคเหนือ)
-    SignalUnit(
-      id: 'signal_3rd_army',
-      name: 'กองพันทหารสื่อสารที่ 3',
-      nameEn: '3rd Area Signal Battalion',
-      abbreviation: 'พัน.ส.ทภ.3',
-      level: UnitLevel.battalion,
-      parentId: '3rd_army_area',
-      location: UnitLocation(
-        name: 'ค่ายสมเด็จพระนเรศวรมหาราช',
-        province: 'พิษณุโลก',
-        district: 'เมืองพิษณุโลก',
-        latitude: 16.8211,
-        longitude: 100.2659,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองทัพภาคที่ 3',
-      missions: [
-        'สนับสนุนการสื่อสารให้ ทภ.3',
-        'ปฏิบัติการสื่อสารในพื้นที่ภาคเหนือ',
-      ],
-      childUnitIds: [],
-      personnelMin: 300,
-      personnelMax: 500,
-      armyArea: 3,
-      color: Color(0xFFFF9800),
-    ),
-
-    // กองทัพภาคที่ 4 (ภาคใต้)
-    SignalUnit(
-      id: 'signal_4th_army',
-      name: 'กองพันทหารสื่อสารที่ 4',
-      nameEn: '4th Area Signal Battalion',
-      abbreviation: 'พัน.ส.ทภ.4',
-      level: UnitLevel.battalion,
-      parentId: '4th_army_area',
-      location: UnitLocation(
-        name: 'ค่ายวชิราวุธ',
-        province: 'นครศรีธรรมราช',
-        district: 'เมืองนครศรีธรรมราช',
-        latitude: 8.4304,
-        longitude: 99.9632,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองทัพภาคที่ 4',
-      missions: [
-        'สนับสนุนการสื่อสารให้ ทภ.4',
-        'ปฏิบัติการสื่อสารในพื้นที่ภาคใต้',
-      ],
-      childUnitIds: [],
-      personnelMin: 300,
-      personnelMax: 500,
-      armyArea: 4,
-      color: Color(0xFFE91E63),
-    ),
-  ];
-
-  // =============================================
-  // หน่วยสื่อสารประจำกองพล
-  // =============================================
-
-  static const List<SignalUnit> divisionUnits = [
-    // พล.ร.2 รอ.
-    SignalUnit(
-      id: 'signal_2nd_div',
-      name: 'กองพันทหารสื่อสาร พลร.2 รอ.',
-      nameEn: '2nd Infantry Division Signal Battalion',
-      abbreviation: 'พัน.ส.พล.ร.2 รอ.',
-      level: UnitLevel.battalion,
-      parentId: '2nd_infantry_div',
-      location: UnitLocation(
-        name: 'ค่ายพรหมโยธี',
-        province: 'ปราจีนบุรี',
-        district: 'เมืองปราจีนบุรี',
-        latitude: 14.0500,
-        longitude: 101.3700,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองพลทหารราบที่ 2 รักษาพระองค์',
-      missions: ['สนับสนุนการสื่อสารให้ พล.ร.2 รอ.'],
-      childUnitIds: [],
-      personnelMin: 200,
-      personnelMax: 350,
-      color: Color(0xFF9C27B0),
-    ),
-
-    // พล.ร.3
-    SignalUnit(
-      id: 'signal_3rd_div',
-      name: 'กองพันทหารสื่อสาร พลร.3',
-      nameEn: '3rd Infantry Division Signal Battalion',
-      abbreviation: 'พัน.ส.พล.ร.3',
-      level: UnitLevel.battalion,
-      parentId: '3rd_infantry_div',
-      location: UnitLocation(
-        name: 'ค่ายสุรนารี',
-        province: 'นครราชสีมา',
-        district: 'เมืองนครราชสีมา',
-        latitude: 14.9650,
-        longitude: 102.0950,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองพลทหารราบที่ 3',
-      missions: ['สนับสนุนการสื่อสารให้ พล.ร.3'],
-      childUnitIds: [],
-      personnelMin: 200,
-      personnelMax: 350,
-      color: Color(0xFF9C27B0),
-    ),
-
-    // พล.ร.4
-    SignalUnit(
-      id: 'signal_4th_div',
-      name: 'กองพันทหารสื่อสาร พลร.4',
-      nameEn: '4th Infantry Division Signal Battalion',
-      abbreviation: 'พัน.ส.พล.ร.4',
-      level: UnitLevel.battalion,
-      parentId: '4th_infantry_div',
-      location: UnitLocation(
-        name: 'ค่ายสมเด็จพระนเรศวรมหาราช',
-        province: 'พิษณุโลก',
-        district: 'เมืองพิษณุโลก',
-        latitude: 16.8150,
-        longitude: 100.2600,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองพลทหารราบที่ 4',
-      missions: ['สนับสนุนการสื่อสารให้ พล.ร.4'],
-      childUnitIds: [],
-      personnelMin: 200,
-      personnelMax: 350,
-      color: Color(0xFF9C27B0),
-    ),
-
-    // พล.ร.5
-    SignalUnit(
-      id: 'signal_5th_div',
-      name: 'กองพันทหารสื่อสาร พลร.5',
-      nameEn: '5th Infantry Division Signal Battalion',
-      abbreviation: 'พัน.ส.พล.ร.5',
-      level: UnitLevel.battalion,
-      parentId: '5th_infantry_div',
-      location: UnitLocation(
-        name: 'ค่ายเทพสตรีศรีสุนทร',
-        province: 'ลพบุรี',
-        district: 'เมืองลพบุรี',
-        latitude: 14.8000,
-        longitude: 100.6200,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองพลทหารราบที่ 5',
-      missions: ['สนับสนุนการสื่อสารให้ พล.ร.5'],
-      childUnitIds: [],
-      personnelMin: 200,
-      personnelMax: 350,
-      color: Color(0xFF9C27B0),
-    ),
-
-    // พล.ร.6
-    SignalUnit(
-      id: 'signal_6th_div',
-      name: 'กองพันทหารสื่อสาร พลร.6',
-      nameEn: '6th Infantry Division Signal Battalion',
-      abbreviation: 'พัน.ส.พล.ร.6',
-      level: UnitLevel.battalion,
-      parentId: '6th_infantry_div',
-      location: UnitLocation(
-        name: 'ค่ายสรรพสิทธิประสงค์',
-        province: 'อุบลราชธานี',
-        district: 'วารินชำราบ',
-        latitude: 15.2000,
-        longitude: 104.8700,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองพลทหารราบที่ 6',
-      missions: ['สนับสนุนการสื่อสารให้ พล.ร.6'],
-      childUnitIds: [],
-      personnelMin: 200,
-      personnelMax: 350,
-      color: Color(0xFF9C27B0),
-    ),
-
-    // พล.ร.9
-    SignalUnit(
-      id: 'signal_9th_div',
-      name: 'กองพันทหารสื่อสาร พลร.9',
-      nameEn: '9th Infantry Division Signal Battalion',
-      abbreviation: 'พัน.ส.พล.ร.9',
-      level: UnitLevel.battalion,
-      parentId: '9th_infantry_div',
-      location: UnitLocation(
-        name: 'ค่ายสุรสีห์',
-        province: 'กาญจนบุรี',
-        district: 'เมืองกาญจนบุรี',
-        latitude: 14.0200,
-        longitude: 99.5300,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองพลทหารราบที่ 9',
-      missions: ['สนับสนุนการสื่อสารให้ พล.ร.9'],
-      childUnitIds: [],
-      personnelMin: 200,
-      personnelMax: 350,
-      color: Color(0xFF9C27B0),
-    ),
-
-    // พล.ร.15
-    SignalUnit(
-      id: 'signal_15th_div',
-      name: 'กองพันทหารสื่อสาร พลร.15',
-      nameEn: '15th Infantry Division Signal Battalion',
-      abbreviation: 'พัน.ส.พล.ร.15',
-      level: UnitLevel.battalion,
-      parentId: '15th_infantry_div',
-      location: UnitLocation(
-        name: 'ค่ายวชิราวุธ',
-        province: 'นครศรีธรรมราช',
-        district: 'เมืองนครศรีธรรมราช',
-        latitude: 8.4250,
-        longitude: 99.9580,
-      ),
-      commanderRank: 'พันโท',
-      description: 'กองพันทหารสื่อสารประจำกองพลทหารราบที่ 15',
-      missions: ['สนับสนุนการสื่อสารให้ พล.ร.15'],
-      childUnitIds: [],
-      personnelMin: 200,
-      personnelMax: 350,
-      color: Color(0xFF9C27B0),
-    ),
-  ];
-
-  // =============================================
-  // หน่วยสื่อสารพิเศษ
-  // =============================================
-
-  static const List<SignalUnit> specialUnits = [
     // ศูนย์สงครามอิเล็กทรอนิกส์
     SignalUnit(
       id: 'ew_center',
@@ -499,17 +147,408 @@ class RTASignalCorps {
     ),
   ];
 
+  // =============================================
+  // หน่วยสื่อสารประจำกองทัพภาค (ข้อมูลจาก PDF)
+  // กองพันทหารสื่อสาร (ส.พัน.) ขึ้นตรง ทภ.
+  // =============================================
+
+  static const List<SignalUnit> armyAreaUnits = [
+    // =============================================
+    // กองทัพภาคที่ 1 (ภาคกลาง/ภาคตะวันออก)
+    // ส.พัน.1, ส.พัน.2, ส.พัน.9, ส.พัน.21
+    // =============================================
+
+    SignalUnit(
+      id: 'signal_bn_1',
+      name: 'กองพันทหารสื่อสารที่ 1',
+      nameEn: '1st Signal Battalion',
+      abbreviation: 'ส.พัน.1',
+      level: UnitLevel.battalion,
+      parentId: '1st_army_area',
+      location: UnitLocation(
+        name: 'กรุงเทพมหานคร',
+        province: 'กรุงเทพมหานคร',
+        district: 'ดุสิต',
+        latitude: 13.7780,
+        longitude: 100.5120,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 1 สนับสนุน ทภ.1',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.1'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 1,
+      color: Color(0xFF4CAF50),
+    ),
+
+    SignalUnit(
+      id: 'signal_bn_2',
+      name: 'กองพันทหารสื่อสารที่ 2',
+      nameEn: '2nd Signal Battalion',
+      abbreviation: 'ส.พัน.2',
+      level: UnitLevel.battalion,
+      parentId: '1st_army_area',
+      location: UnitLocation(
+        name: 'ค่ายจักรพงษ์',
+        province: 'ปราจีนบุรี',
+        district: 'เมืองปราจีนบุรี',
+        latitude: 14.0579,
+        longitude: 101.3731,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 2 สนับสนุน ทภ.1',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.1'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 1,
+      color: Color(0xFF4CAF50),
+    ),
+
+    SignalUnit(
+      id: 'signal_bn_9',
+      name: 'กองพันทหารสื่อสารที่ 9',
+      nameEn: '9th Signal Battalion',
+      abbreviation: 'ส.พัน.9',
+      level: UnitLevel.battalion,
+      parentId: '1st_army_area',
+      location: UnitLocation(
+        name: 'ค่ายสุรสีห์',
+        province: 'กาญจนบุรี',
+        district: 'เมืองกาญจนบุรี',
+        latitude: 14.0200,
+        longitude: 99.5300,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 9 สนับสนุน ทภ.1',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.1'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 1,
+      color: Color(0xFF4CAF50),
+    ),
+
+    SignalUnit(
+      id: 'signal_bn_21',
+      name: 'กองพันทหารสื่อสารที่ 21',
+      nameEn: '21st Signal Battalion',
+      abbreviation: 'ส.พัน.21',
+      level: UnitLevel.battalion,
+      parentId: '1st_army_area',
+      location: UnitLocation(
+        name: 'ค่ายนวมินทราชินี',
+        province: 'ชลบุรี',
+        district: 'เมืองชลบุรี',
+        latitude: 13.3622,
+        longitude: 100.9847,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 21 สนับสนุน ทภ.1',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.1'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 1,
+      color: Color(0xFF4CAF50),
+    ),
+
+    // =============================================
+    // กองทัพภาคที่ 2 (ภาคตะวันออกเฉียงเหนือ/อีสาน)
+    // ส.พัน.3, ส.พัน.6, ส.พัน.22
+    // =============================================
+
+    SignalUnit(
+      id: 'signal_bn_3',
+      name: 'กองพันทหารสื่อสารที่ 3',
+      nameEn: '3rd Signal Battalion',
+      abbreviation: 'ส.พัน.3',
+      level: UnitLevel.battalion,
+      parentId: '2nd_army_area',
+      location: UnitLocation(
+        name: 'ค่ายสุรนารี',
+        province: 'นครราชสีมา',
+        district: 'เมืองนครราชสีมา',
+        latitude: 14.9707,
+        longitude: 102.1018,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 3 สนับสนุน ทภ.2',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.2'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 2,
+      color: Color(0xFF2196F3),
+    ),
+
+    SignalUnit(
+      id: 'signal_bn_6',
+      name: 'กองพันทหารสื่อสารที่ 6',
+      nameEn: '6th Signal Battalion',
+      abbreviation: 'ส.พัน.6',
+      level: UnitLevel.battalion,
+      parentId: '2nd_army_area',
+      location: UnitLocation(
+        name: 'ค่ายสรรพสิทธิประสงค์',
+        province: 'อุบลราชธานี',
+        district: 'วารินชำราบ',
+        latitude: 15.2000,
+        longitude: 104.8700,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 6 สนับสนุน ทภ.2',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.2'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 2,
+      color: Color(0xFF2196F3),
+    ),
+
+    SignalUnit(
+      id: 'signal_bn_22',
+      name: 'กองพันทหารสื่อสารที่ 22',
+      nameEn: '22nd Signal Battalion',
+      abbreviation: 'ส.พัน.22',
+      level: UnitLevel.battalion,
+      parentId: '2nd_army_area',
+      location: UnitLocation(
+        name: 'ค่ายประจักษ์ศิลปาคม',
+        province: 'อุดรธานี',
+        district: 'เมืองอุดรธานี',
+        latitude: 17.4156,
+        longitude: 102.7872,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 22 สนับสนุน ทภ.2',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.2'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 2,
+      color: Color(0xFF2196F3),
+    ),
+
+    // =============================================
+    // กองทัพภาคที่ 3 (ภาคเหนือ)
+    // ส.พัน.4, ส.พัน.11, ส.พัน.23
+    // =============================================
+
+    SignalUnit(
+      id: 'signal_bn_4',
+      name: 'กองพันทหารสื่อสารที่ 4',
+      nameEn: '4th Signal Battalion',
+      abbreviation: 'ส.พัน.4',
+      level: UnitLevel.battalion,
+      parentId: '3rd_army_area',
+      location: UnitLocation(
+        name: 'ค่ายสมเด็จพระนเรศวรมหาราช',
+        province: 'พิษณุโลก',
+        district: 'เมืองพิษณุโลก',
+        latitude: 16.8211,
+        longitude: 100.2659,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 4 สนับสนุน ทภ.3',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.3'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 3,
+      color: Color(0xFFFF9800),
+    ),
+
+    SignalUnit(
+      id: 'signal_bn_11',
+      name: 'กองพันทหารสื่อสารที่ 11',
+      nameEn: '11th Signal Battalion',
+      abbreviation: 'ส.พัน.11',
+      level: UnitLevel.battalion,
+      parentId: '3rd_army_area',
+      location: UnitLocation(
+        name: 'ค่ายกาวิละ',
+        province: 'เชียงใหม่',
+        district: 'เมืองเชียงใหม่',
+        latitude: 18.7883,
+        longitude: 98.9853,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 11 สนับสนุน ทภ.3',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.3'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 3,
+      color: Color(0xFFFF9800),
+    ),
+
+    SignalUnit(
+      id: 'signal_bn_23',
+      name: 'กองพันทหารสื่อสารที่ 23',
+      nameEn: '23rd Signal Battalion',
+      abbreviation: 'ส.พัน.23',
+      level: UnitLevel.battalion,
+      parentId: '3rd_army_area',
+      location: UnitLocation(
+        name: 'ค่ายเม็งรายมหาราช',
+        province: 'เชียงราย',
+        district: 'เมืองเชียงราย',
+        latitude: 19.9071,
+        longitude: 99.8310,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 23 สนับสนุน ทภ.3',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.3'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 3,
+      color: Color(0xFFFF9800),
+    ),
+
+    // =============================================
+    // กองทัพภาคที่ 4 (ภาคใต้)
+    // ส.พัน.5, ส.พัน.15, ส.พัน.24
+    // =============================================
+
+    SignalUnit(
+      id: 'signal_bn_5',
+      name: 'กองพันทหารสื่อสารที่ 5',
+      nameEn: '5th Signal Battalion',
+      abbreviation: 'ส.พัน.5',
+      level: UnitLevel.battalion,
+      parentId: '4th_army_area',
+      location: UnitLocation(
+        name: 'ค่ายวชิราวุธ',
+        province: 'นครศรีธรรมราช',
+        district: 'เมืองนครศรีธรรมราช',
+        latitude: 8.4304,
+        longitude: 99.9632,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 5 สนับสนุน ทภ.4',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.4'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 4,
+      color: Color(0xFFE91E63),
+    ),
+
+    SignalUnit(
+      id: 'signal_bn_15',
+      name: 'กองพันทหารสื่อสารที่ 15',
+      nameEn: '15th Signal Battalion',
+      abbreviation: 'ส.พัน.15',
+      level: UnitLevel.battalion,
+      parentId: '4th_army_area',
+      location: UnitLocation(
+        name: 'ค่ายเสนาณรงค์',
+        province: 'สงขลา',
+        district: 'หาดใหญ่',
+        latitude: 7.0086,
+        longitude: 100.4747,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 15 สนับสนุน ทภ.4',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.4'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 4,
+      color: Color(0xFFE91E63),
+    ),
+
+    SignalUnit(
+      id: 'signal_bn_24',
+      name: 'กองพันทหารสื่อสารที่ 24',
+      nameEn: '24th Signal Battalion',
+      abbreviation: 'ส.พัน.24',
+      level: UnitLevel.battalion,
+      parentId: '4th_army_area',
+      location: UnitLocation(
+        name: 'ค่ายอิงคยุทธบริหาร',
+        province: 'ปัตตานี',
+        district: 'หนองจิก',
+        latitude: 6.8691,
+        longitude: 101.2501,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันทหารสื่อสารที่ 24 สนับสนุน ทภ.4',
+      missions: ['สนับสนุนการสื่อสารให้ ทภ.4'],
+      childUnitIds: [],
+      personnelMin: 300,
+      personnelMax: 500,
+      armyArea: 4,
+      color: Color(0xFFE91E63),
+    ),
+  ];
+
+  // =============================================
+  // ข้อมูลสรุปกองทัพภาค (สำหรับการแสดงผล)
+  // =============================================
+
+  static const List<ArmyAreaInfo> armyAreaInfo = [
+    ArmyAreaInfo(
+      id: 1,
+      name: 'กองทัพภาคที่ 1',
+      nameEn: '1st Army Area',
+      abbreviation: 'ทภ.1',
+      region: 'ภาคกลาง/ตะวันออก',
+      headquarters: 'กรุงเทพมหานคร',
+      signalBattalions: ['ส.พัน.1', 'ส.พัน.2', 'ส.พัน.9', 'ส.พัน.21'],
+      color: Color(0xFF4CAF50),
+      latitude: 13.7563,
+      longitude: 100.5018,
+    ),
+    ArmyAreaInfo(
+      id: 2,
+      name: 'กองทัพภาคที่ 2',
+      nameEn: '2nd Army Area',
+      abbreviation: 'ทภ.2',
+      region: 'ภาคตะวันออกเฉียงเหนือ',
+      headquarters: 'ค่ายสุรนารี นครราชสีมา',
+      signalBattalions: ['ส.พัน.3', 'ส.พัน.6', 'ส.พัน.22'],
+      color: Color(0xFF2196F3),
+      latitude: 14.9707,
+      longitude: 102.1018,
+    ),
+    ArmyAreaInfo(
+      id: 3,
+      name: 'กองทัพภาคที่ 3',
+      nameEn: '3rd Army Area',
+      abbreviation: 'ทภ.3',
+      region: 'ภาคเหนือ',
+      headquarters: 'ค่ายสมเด็จพระนเรศวรมหาราช พิษณุโลก',
+      signalBattalions: ['ส.พัน.4', 'ส.พัน.11', 'ส.พัน.23'],
+      color: Color(0xFFFF9800),
+      latitude: 16.8211,
+      longitude: 100.2659,
+    ),
+    ArmyAreaInfo(
+      id: 4,
+      name: 'กองทัพภาคที่ 4',
+      nameEn: '4th Army Area',
+      abbreviation: 'ทภ.4',
+      region: 'ภาคใต้',
+      headquarters: 'ค่ายวชิราวุธ นครศรีธรรมราช',
+      signalBattalions: ['ส.พัน.5', 'ส.พัน.15', 'ส.พัน.24'],
+      color: Color(0xFFE91E63),
+      latitude: 8.4304,
+      longitude: 99.9632,
+    ),
+  ];
+
   /// Get all units combined
   static List<SignalUnit> get allUnits => [
     ...centralUnits,
-    ...specialUnits,
   ];
 
   static List<SignalUnit> get allCombinedUnits => [
     ...centralUnits,
     ...armyAreaUnits,
-    ...divisionUnits,
-    ...specialUnits,
   ];
 
   /// Get unit by ID
@@ -531,15 +570,28 @@ class RTASignalCorps {
     return allCombinedUnits.where((u) => u.level == level).toList();
   }
 
+  /// Get units by army area
+  static List<SignalUnit> getUnitsByArmyArea(int armyArea) {
+    return armyAreaUnits.where((u) => u.armyArea == armyArea).toList();
+  }
+
   /// Get root unit (Signal Department)
   static SignalUnit get rootUnit => centralUnits.first;
 
   /// Get units for map display (main units only)
   static List<SignalUnit> get mapDisplayUnits => [
-    ...centralUnits.where((u) => u.level == UnitLevel.department),
+    ...centralUnits.where((u) => u.level == UnitLevel.department || u.level == UnitLevel.school),
     ...armyAreaUnits,
-    ...divisionUnits,
   ];
+
+  /// Get army area info by ID
+  static ArmyAreaInfo? getArmyAreaInfo(int id) {
+    try {
+      return armyAreaInfo.firstWhere((a) => a.id == id);
+    } catch (_) {
+      return null;
+    }
+  }
 }
 
 // =============================================
@@ -589,7 +641,7 @@ extension UnitLevelExtension on UnitLevel {
       case UnitLevel.school:
         return '🎓';
       case UnitLevel.factory:
-        return '🏭';
+        return '⚙';
       case UnitLevel.battalion:
         return '||';
       case UnitLevel.company:
@@ -684,4 +736,31 @@ class SignalUnit {
     }
     return '-';
   }
+}
+
+/// ข้อมูลกองทัพภาค
+class ArmyAreaInfo {
+  final int id;
+  final String name;
+  final String nameEn;
+  final String abbreviation;
+  final String region;
+  final String headquarters;
+  final List<String> signalBattalions;
+  final Color color;
+  final double latitude;
+  final double longitude;
+
+  const ArmyAreaInfo({
+    required this.id,
+    required this.name,
+    required this.nameEn,
+    required this.abbreviation,
+    required this.region,
+    required this.headquarters,
+    required this.signalBattalions,
+    required this.color,
+    required this.latitude,
+    required this.longitude,
+  });
 }

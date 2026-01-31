@@ -1068,12 +1068,24 @@ class _InfoCard extends StatelessWidget {
   }
 }
 
-/// Custom painter for Thailand map outline
+/// Custom painter for realistic Thailand map outline
 class ThailandMapPainter extends CustomPainter {
+  // Geographic bounds of Thailand
+  static const double minLat = 5.5;
+  static const double maxLat = 20.5;
+  static const double minLng = 97.3;
+  static const double maxLng = 105.7;
+
+  // Convert lat/lng to canvas coordinates
+  Offset _geoToCanvas(double lat, double lng, Size size) {
+    final x = (lng - minLng) / (maxLng - minLng) * size.width;
+    final y = (1 - (lat - minLat) / (maxLat - minLat)) * size.height;
+    return Offset(x, y);
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..style = PaintingStyle.fill;
+    final paint = Paint()..style = PaintingStyle.fill;
 
     // Gradient fill
     final rect = Rect.fromLTWH(0, 0, size.width, size.height);
@@ -1087,64 +1099,141 @@ class ThailandMapPainter extends CustomPainter {
     ).createShader(rect);
 
     final borderPaint = Paint()
-      ..color = AppColors.signalCorps.withOpacity(0.3)
+      ..color = AppColors.signalCorps.withOpacity(0.5)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
+      ..strokeWidth = 2.5
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
 
     final glowPaint = Paint()
-      ..color = AppColors.signalCorps.withOpacity(0.1)
+      ..color = AppColors.signalCorps.withOpacity(0.15)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 8
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8);
+      ..strokeWidth = 12
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 10);
 
-    // Thailand shape points
-    final points = [
-      Offset(0.45 * size.width, 0.05 * size.height),
-      Offset(0.55 * size.width, 0.08 * size.height),
-      Offset(0.65 * size.width, 0.15 * size.height),
-      Offset(0.70 * size.width, 0.25 * size.height),
-      Offset(0.75 * size.width, 0.30 * size.height),
-      Offset(0.70 * size.width, 0.40 * size.height),
-      Offset(0.65 * size.width, 0.45 * size.height),
-      Offset(0.60 * size.width, 0.50 * size.height),
-      Offset(0.55 * size.width, 0.55 * size.height),
-      Offset(0.50 * size.width, 0.60 * size.height),
-      Offset(0.48 * size.width, 0.70 * size.height),
-      Offset(0.45 * size.width, 0.80 * size.height),
-      Offset(0.42 * size.width, 0.90 * size.height),
-      Offset(0.40 * size.width, 0.95 * size.height),
-      Offset(0.38 * size.width, 0.90 * size.height),
-      Offset(0.35 * size.width, 0.80 * size.height),
-      Offset(0.33 * size.width, 0.70 * size.height),
-      Offset(0.30 * size.width, 0.60 * size.height),
-      Offset(0.28 * size.width, 0.50 * size.height),
-      Offset(0.25 * size.width, 0.40 * size.height),
-      Offset(0.30 * size.width, 0.30 * size.height),
-      Offset(0.35 * size.width, 0.20 * size.height),
-      Offset(0.38 * size.width, 0.12 * size.height),
-      Offset(0.42 * size.width, 0.08 * size.height),
+    final innerGlowPaint = Paint()
+      ..color = AppColors.signalCorps.withOpacity(0.08)
+      ..style = PaintingStyle.fill;
+
+    // Realistic Thailand coordinates (simplified but accurate shape)
+    // Northern region
+    final thailandCoords = [
+      // Northern tip (Golden Triangle area)
+      [20.4, 100.1], [20.3, 100.5], [20.0, 100.8],
+      // Northern border with Laos
+      [19.8, 101.2], [19.5, 101.6], [19.0, 101.9],
+      [18.5, 102.5], [18.0, 103.2], [17.5, 103.8],
+      // Northeastern border
+      [17.2, 104.2], [16.8, 104.6], [16.2, 104.9],
+      [15.8, 105.2], [15.4, 105.5], [15.0, 105.6],
+      // Eastern border going south
+      [14.5, 105.4], [14.0, 105.0], [13.5, 104.5],
+      [13.0, 103.8], [12.5, 103.0], [12.2, 102.5],
+      // Southern Cambodia border
+      [12.0, 102.0], [11.8, 101.5],
+      // Gulf of Thailand coast
+      [11.5, 101.0], [11.0, 100.5], [10.5, 99.8],
+      [10.0, 99.3], [9.5, 99.5], [9.0, 99.7],
+      // Malay Peninsula (narrow part)
+      [8.5, 99.8], [8.0, 99.5], [7.5, 99.6],
+      [7.0, 99.8], [6.5, 100.2], [6.2, 100.5],
+      // Southern tip
+      [6.0, 100.4], [5.9, 100.1],
+      // Western coast going north
+      [6.2, 99.5], [6.8, 99.0], [7.5, 98.5],
+      [8.0, 98.3], [8.5, 98.4], [9.0, 98.3],
+      [9.5, 98.5], [10.0, 98.7], [10.5, 98.9],
+      // Western Andaman coast
+      [11.0, 99.0], [11.5, 99.2], [12.0, 99.0],
+      [12.5, 99.2], [13.0, 99.3], [13.5, 99.2],
+      // Myanmar border going north
+      [14.0, 99.0], [14.5, 98.6], [15.0, 98.5],
+      [15.5, 98.4], [16.0, 98.2], [16.5, 98.0],
+      [17.0, 97.8], [17.5, 97.7], [18.0, 97.8],
+      [18.5, 98.0], [19.0, 98.5], [19.5, 99.0],
+      // Back to northern tip
+      [20.0, 99.5], [20.4, 100.1],
     ];
 
+    // Create path from coordinates
     final path = Path();
-    path.moveTo(points[0].dx, points[0].dy);
-    for (int i = 1; i < points.length; i++) {
-      final prev = points[i - 1];
-      final curr = points[i];
+    final firstPoint = _geoToCanvas(thailandCoords[0][0], thailandCoords[0][1], size);
+    path.moveTo(firstPoint.dx, firstPoint.dy);
+
+    // Use smooth curves for realistic coastline
+    for (int i = 1; i < thailandCoords.length; i++) {
+      final curr = _geoToCanvas(thailandCoords[i][0], thailandCoords[i][1], size);
+      final prev = _geoToCanvas(thailandCoords[i - 1][0], thailandCoords[i - 1][1], size);
+
+      // Use quadratic bezier for smoother curves
       final controlX = (prev.dx + curr.dx) / 2;
       final controlY = (prev.dy + curr.dy) / 2;
       path.quadraticBezierTo(prev.dx, prev.dy, controlX, controlY);
     }
     path.close();
 
-    // Draw glow first
+    // Draw outer glow
     canvas.drawPath(path, glowPaint);
-    // Then fill
+    // Draw inner glow/fill
+    canvas.drawPath(path, innerGlowPaint);
+    // Draw main fill
     canvas.drawPath(path, paint);
-    // Then border
+    // Draw border
     canvas.drawPath(path, borderPaint);
+
+    // Draw region boundaries (subtle internal lines)
+    _drawRegionBoundaries(canvas, size);
 
     // Draw region labels
     _drawRegionLabels(canvas, size);
+  }
+
+  void _drawRegionBoundaries(Canvas canvas, Size size) {
+    final boundaryPaint = Paint()
+      ..color = AppColors.signalCorps.withOpacity(0.15)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.5
+      ..strokeCap = StrokeCap.round;
+
+    // Central-Northeast boundary (approximate)
+    final centralNEBoundary = Path();
+    centralNEBoundary.moveTo(
+      _geoToCanvas(16.5, 101.0, size).dx,
+      _geoToCanvas(16.5, 101.0, size).dy,
+    );
+    centralNEBoundary.quadraticBezierTo(
+      _geoToCanvas(15.0, 102.0, size).dx,
+      _geoToCanvas(15.0, 102.0, size).dy,
+      _geoToCanvas(13.5, 102.5, size).dx,
+      _geoToCanvas(13.5, 102.5, size).dy,
+    );
+    canvas.drawPath(centralNEBoundary, boundaryPaint);
+
+    // North-Central boundary
+    final northCentralBoundary = Path();
+    northCentralBoundary.moveTo(
+      _geoToCanvas(17.5, 98.5, size).dx,
+      _geoToCanvas(17.5, 98.5, size).dy,
+    );
+    northCentralBoundary.quadraticBezierTo(
+      _geoToCanvas(17.0, 100.5, size).dx,
+      _geoToCanvas(17.0, 100.5, size).dy,
+      _geoToCanvas(16.5, 101.5, size).dx,
+      _geoToCanvas(16.5, 101.5, size).dy,
+    );
+    canvas.drawPath(northCentralBoundary, boundaryPaint);
+
+    // Central-South boundary
+    final centralSouthBoundary = Path();
+    centralSouthBoundary.moveTo(
+      _geoToCanvas(11.0, 99.2, size).dx,
+      _geoToCanvas(11.0, 99.2, size).dy,
+    );
+    centralSouthBoundary.lineTo(
+      _geoToCanvas(11.0, 100.5, size).dx,
+      _geoToCanvas(11.0, 100.5, size).dy,
+    );
+    canvas.drawPath(centralSouthBoundary, boundaryPaint);
   }
 
   void _drawRegionLabels(Canvas canvas, Size size) {
@@ -1153,26 +1242,27 @@ class ThailandMapPainter extends CustomPainter {
     );
 
     final regions = [
-      ('ภาคเหนือ', Offset(0.40 * size.width, 0.15 * size.height)),
-      ('ภาคอีสาน', Offset(0.62 * size.width, 0.30 * size.height)),
-      ('ภาคกลาง', Offset(0.45 * size.width, 0.48 * size.height)),
-      ('ภาคใต้', Offset(0.40 * size.width, 0.82 * size.height)),
+      ('ภาคเหนือ', _geoToCanvas(18.5, 99.5, size), const Color(0xFFFF9800)),
+      ('ภาคตะวันออก\nเฉียงเหนือ', _geoToCanvas(15.5, 103.0, size), const Color(0xFF2196F3)),
+      ('ภาคกลาง', _geoToCanvas(14.5, 100.5, size), const Color(0xFF4CAF50)),
+      ('ภาคใต้', _geoToCanvas(8.5, 99.5, size), const Color(0xFFE91E63)),
     ];
 
-    for (final (label, offset) in regions) {
+    for (final (label, offset, color) in regions) {
       textPainter.text = TextSpan(
         text: label,
         style: TextStyle(
-          color: AppColors.textMuted.withOpacity(0.6),
-          fontSize: 11,
-          fontWeight: FontWeight.w500,
-          letterSpacing: 0.5,
+          color: color.withOpacity(0.7),
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.3,
+          height: 1.3,
         ),
       );
       textPainter.layout();
       textPainter.paint(
         canvas,
-        Offset(offset.dx - textPainter.width / 2, offset.dy),
+        Offset(offset.dx - textPainter.width / 2, offset.dy - textPainter.height / 2),
       );
     }
   }

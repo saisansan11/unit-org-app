@@ -128,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.25),
+                      color: Colors.white.withOpacity( 0.25),
                       borderRadius: BorderRadius.circular(AppSizes.radiusFull),
                     ),
                     child: const Text(
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         '${RTASignalCorps.allCombinedUnits.length} หน่วย',
                         style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.9),
+                          color: Colors.white.withOpacity( 0.9),
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(width: 8),
                       Icon(
                         Icons.arrow_forward_rounded,
-                        color: Colors.white.withValues(alpha: 0.9),
+                        color: Colors.white.withOpacity( 0.9),
                         size: 18,
                       ),
                     ],
@@ -177,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
+                color: Colors.white.withOpacity( 0.2),
                 borderRadius: BorderRadius.circular(AppSizes.radiusL),
               ),
               child: const Icon(
@@ -261,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: AppColors.accentPink.withValues(alpha: 0.15),
+                color: AppColors.accentPink.withOpacity( 0.15),
                 borderRadius: BorderRadius.circular(AppSizes.radiusS),
               ),
               child: const Icon(
@@ -325,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: AppColors.accentIndigo.withValues(alpha: 0.15),
+                color: AppColors.accentIndigo.withOpacity( 0.15),
                 borderRadius: BorderRadius.circular(AppSizes.radiusS),
               ),
               child: const Icon(
@@ -510,7 +510,7 @@ class _BentoCard extends StatelessWidget {
                     width: 52,
                     height: 52,
                     decoration: BoxDecoration(
-                      color: iconColor.withValues(alpha: 0.15),
+                      color: iconColor.withOpacity( 0.15),
                       borderRadius: BorderRadius.circular(AppSizes.radiusM),
                     ),
                     child: Icon(icon, color: iconColor, size: 28),
@@ -552,7 +552,7 @@ class _BentoCard extends StatelessWidget {
                     width: 44,
                     height: 44,
                     decoration: BoxDecoration(
-                      color: iconColor.withValues(alpha: 0.15),
+                      color: iconColor.withOpacity( 0.15),
                       borderRadius: BorderRadius.circular(AppSizes.radiusM),
                     ),
                     child: Icon(icon, color: iconColor, size: 24),
@@ -660,7 +660,7 @@ class _CategoryTile extends StatelessWidget {
             width: 48,
             height: 48,
             decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: 0.1),
+              color: AppColors.primary.withOpacity( 0.1),
               borderRadius: BorderRadius.circular(AppSizes.radiusM),
             ),
             child: Icon(
@@ -714,7 +714,7 @@ class _CategoryTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
+        color: color.withOpacity( 0.12),
         borderRadius: BorderRadius.circular(AppSizes.radiusFull),
       ),
       child: Text(
@@ -735,7 +735,7 @@ class _CategoryTile extends StatelessWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.12),
+          color: color.withOpacity( 0.12),
           borderRadius: BorderRadius.circular(AppSizes.radiusM),
         ),
         child: Icon(icon, color: color, size: 20),
@@ -817,7 +817,7 @@ class _OptionsSheet extends StatelessWidget {
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.12),
+                    color: color.withOpacity( 0.12),
                     borderRadius: BorderRadius.circular(AppSizes.radiusM),
                   ),
                   child: Icon(icon, color: color, size: 24),

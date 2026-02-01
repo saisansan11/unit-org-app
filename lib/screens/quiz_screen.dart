@@ -101,8 +101,8 @@ class _QuizScreenState extends State<QuizScreen>
               height: 80,
               decoration: BoxDecoration(
                 color: passed
-                    ? AppColors.success.withValues(alpha: 0.2)
-                    : AppColors.error.withValues(alpha: 0.2),
+                    ? AppColors.success.withOpacity( 0.2)
+                    : AppColors.error.withOpacity( 0.2),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -317,16 +317,16 @@ class _QuizScreenState extends State<QuizScreen>
 
                     if (showResult) {
                       if (isCorrect) {
-                        bgColor = AppColors.success.withValues(alpha: 0.15);
+                        bgColor = AppColors.success.withOpacity( 0.15);
                         borderColor = AppColors.success;
                         textColor = AppColors.success;
                       } else if (isSelected && !isCorrect) {
-                        bgColor = AppColors.error.withValues(alpha: 0.15);
+                        bgColor = AppColors.error.withOpacity( 0.15);
                         borderColor = AppColors.error;
                         textColor = AppColors.error;
                       }
                     } else if (isSelected) {
-                      bgColor = AppColors.primary.withValues(alpha: 0.15);
+                      bgColor = AppColors.primary.withOpacity( 0.15);
                       borderColor = AppColors.primary;
                     }
 
@@ -403,10 +403,10 @@ class _QuizScreenState extends State<QuizScreen>
                 Container(
                   padding: const EdgeInsets.all(AppSizes.paddingM),
                   decoration: BoxDecoration(
-                    color: AppColors.info.withValues(alpha: 0.1),
+                    color: AppColors.info.withOpacity( 0.1),
                     borderRadius: BorderRadius.circular(AppSizes.radiusM),
                     border: Border.all(
-                      color: AppColors.info.withValues(alpha: 0.3),
+                      color: AppColors.info.withOpacity( 0.3),
                     ),
                   ),
                   child: Row(

@@ -308,7 +308,7 @@ class _FlashcardScreenState extends State<FlashcardScreen>
                     end: Alignment.centerRight,
                     colors: [
                       Colors.transparent,
-                      AppColors.success.withValues(alpha:0.15),
+                      AppColors.success.withOpacity(0.15),
                     ],
                   ),
                 ),
@@ -327,7 +327,7 @@ class _FlashcardScreenState extends State<FlashcardScreen>
                     end: Alignment.centerLeft,
                     colors: [
                       Colors.transparent,
-                      AppColors.warning.withValues(alpha:0.15),
+                      AppColors.warning.withOpacity(0.15),
                     ],
                   ),
                 ),
@@ -425,7 +425,7 @@ class _FlashcardScreenState extends State<FlashcardScreen>
                             BorderRadius.circular(AppSizes.radiusFull),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.accent.withValues(alpha:0.5),
+                            color: AppColors.accent.withOpacity(0.5),
                             blurRadius: 8,
                           ),
                         ],
@@ -535,7 +535,7 @@ class _FlashcardScreenState extends State<FlashcardScreen>
         border: Border.all(color: AppColors.borderLight),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.4),
+            color: Colors.black.withOpacity(0.4),
             blurRadius: 32,
             offset: const Offset(0, 16),
           ),
@@ -548,10 +548,10 @@ class _FlashcardScreenState extends State<FlashcardScreen>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha:0.15),
+              color: AppColors.primary.withOpacity(0.15),
               borderRadius: BorderRadius.circular(AppSizes.radiusFull),
               border: Border.all(
-                color: AppColors.primary.withValues(alpha:0.3),
+                color: AppColors.primary.withOpacity(0.3),
               ),
             ),
             child: Text(
@@ -580,7 +580,7 @@ class _FlashcardScreenState extends State<FlashcardScreen>
                   boxShadow: i < card.difficulty
                       ? [
                           BoxShadow(
-                            color: AppColors.warning.withValues(alpha:0.5),
+                            color: AppColors.warning.withOpacity(0.5),
                             blurRadius: 6,
                           ),
                         ]
@@ -605,10 +605,10 @@ class _FlashcardScreenState extends State<FlashcardScreen>
             Container(
               padding: const EdgeInsets.all(AppSizes.paddingM),
               decoration: BoxDecoration(
-                color: AppColors.info.withValues(alpha:0.1),
+                color: AppColors.info.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(AppSizes.radiusM),
                 border: Border.all(
-                  color: AppColors.info.withValues(alpha:0.2),
+                  color: AppColors.info.withOpacity(0.2),
                 ),
               ),
               child: Row(
@@ -666,17 +666,17 @@ class _FlashcardScreenState extends State<FlashcardScreen>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.accent.withValues(alpha:0.15),
-            AppColors.primary.withValues(alpha:0.1),
+            AppColors.accent.withOpacity(0.15),
+            AppColors.primary.withOpacity(0.1),
           ],
         ),
         borderRadius: BorderRadius.circular(AppSizes.radiusXL),
         border: Border.all(
-          color: AppColors.accent.withValues(alpha:0.4),
+          color: AppColors.accent.withOpacity(0.4),
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.accent.withValues(alpha:0.2),
+            color: AppColors.accent.withOpacity(0.2),
             blurRadius: 32,
             offset: const Offset(0, 16),
           ),
@@ -689,11 +689,11 @@ class _FlashcardScreenState extends State<FlashcardScreen>
             width: 64,
             height: 64,
             decoration: BoxDecoration(
-              color: AppColors.accent.withValues(alpha:0.2),
+              color: AppColors.accent.withOpacity(0.2),
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.accent.withValues(alpha:0.3),
+                  color: AppColors.accent.withOpacity(0.3),
                   blurRadius: 16,
                 ),
               ],
@@ -754,7 +754,7 @@ class _FlashcardScreenState extends State<FlashcardScreen>
               height: 80,
               decoration: BoxDecoration(
                 color: (isRight ? AppColors.success : AppColors.warning)
-                    .withValues(alpha:0.2),
+                    .withOpacity(0.2),
                 shape: BoxShape.circle,
                 border: Border.all(
                   color: isRight ? AppColors.success : AppColors.warning,
@@ -763,7 +763,7 @@ class _FlashcardScreenState extends State<FlashcardScreen>
                 boxShadow: [
                   BoxShadow(
                     color: (isRight ? AppColors.success : AppColors.warning)
-                        .withValues(alpha:0.4),
+                        .withOpacity(0.4),
                     blurRadius: 24,
                   ),
                 ],
@@ -841,10 +841,10 @@ class _StatChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: color.withValues(alpha:0.1),
+        color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(AppSizes.radiusFull),
         border: Border.all(
-          color: color.withValues(alpha:0.3),
+          color: color.withOpacity(0.3),
         ),
       ),
       child: Row(
@@ -922,10 +922,10 @@ class _ActionButtonState extends State<_ActionButton>
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 16),
               decoration: BoxDecoration(
-                color: widget.color.withValues(alpha:0.15),
+                color: widget.color.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(AppSizes.radiusL),
                 border: Border.all(
-                  color: widget.color.withValues(alpha:0.3),
+                  color: widget.color.withOpacity(0.3),
                 ),
               ),
               child: Row(
@@ -989,7 +989,7 @@ class _CompletionDialog extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.accent.withValues(alpha:0.4),
+                    color: AppColors.accent.withOpacity(0.4),
                     blurRadius: 24,
                   ),
                 ],
@@ -1105,9 +1105,9 @@ class _StatCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withValues(alpha:0.1),
+        color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(AppSizes.radiusM),
-        border: Border.all(color: color.withValues(alpha:0.3)),
+        border: Border.all(color: color.withOpacity(0.3)),
       ),
       child: Column(
         children: [

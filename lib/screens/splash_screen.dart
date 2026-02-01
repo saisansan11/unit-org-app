@@ -149,9 +149,9 @@ class _SplashScreenState extends State<SplashScreen>
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        AppColors.signalCorps.withValues(alpha:
+                        AppColors.signalCorps.withOpacity(
                             0.15 + _pulseController.value * 0.1),
-                        AppColors.signalCorps.withValues(alpha:0.05),
+                        AppColors.signalCorps.withOpacity(0.05),
                         Colors.transparent,
                       ],
                     ),
@@ -173,9 +173,9 @@ class _SplashScreenState extends State<SplashScreen>
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        AppColors.primary.withValues(alpha:
+                        AppColors.primary.withOpacity(
                             0.12 + _pulseController.value * 0.08),
-                        AppColors.primary.withValues(alpha:0.03),
+                        AppColors.primary.withOpacity(0.03),
                         Colors.transparent,
                       ],
                     ),
@@ -193,7 +193,7 @@ class _SplashScreenState extends State<SplashScreen>
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      AppColors.signalCorps.withValues(alpha:
+                      AppColors.signalCorps.withOpacity(
                           0.05 + _pulseController.value * 0.03),
                       Colors.transparent,
                     ],
@@ -231,16 +231,16 @@ class _SplashScreenState extends State<SplashScreen>
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    AppColors.signalCorps.withValues(alpha:0.3),
-                    AppColors.signalCorps.withValues(alpha:0.15),
-                    AppColors.signalCorps.withValues(alpha:0.05),
+                    AppColors.signalCorps.withOpacity(0.3),
+                    AppColors.signalCorps.withOpacity(0.15),
+                    AppColors.signalCorps.withOpacity(0.05),
                     Colors.transparent,
                   ],
                   stops: const [0.0, 0.4, 0.7, 1.0],
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.signalCorps.withValues(alpha:
+                    color: AppColors.signalCorps.withOpacity(
                         0.2 + _pulseController.value * 0.15),
                     blurRadius: 50 + _pulseController.value * 20,
                     spreadRadius: 10 + _pulseController.value * 5,
@@ -258,16 +258,16 @@ class _SplashScreenState extends State<SplashScreen>
                       end: Alignment.bottomRight,
                       colors: [
                         AppColors.signalCorps,
-                        AppColors.signalCorps.withValues(alpha:0.8),
+                        AppColors.signalCorps.withOpacity(0.8),
                       ],
                     ),
                     border: Border.all(
-                      color: Colors.white.withValues(alpha:0.3),
+                      color: Colors.white.withOpacity(0.3),
                       width: 2,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.signalCorps.withValues(alpha:0.4),
+                        color: AppColors.signalCorps.withOpacity(0.4),
                         blurRadius: 20,
                       ),
                     ],
@@ -311,13 +311,13 @@ class _SplashScreenState extends State<SplashScreen>
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.signalCorps.withValues(alpha:0.2),
-                AppColors.signalCorps.withValues(alpha:0.05),
+                AppColors.signalCorps.withOpacity(0.2),
+                AppColors.signalCorps.withOpacity(0.05),
               ],
             ),
             borderRadius: BorderRadius.circular(AppSizes.radiusFull),
             border: Border.all(
-              color: AppColors.signalCorps.withValues(alpha:0.3),
+              color: AppColors.signalCorps.withOpacity(0.3),
             ),
           ),
           child: Text(
@@ -394,11 +394,11 @@ class _SplashScreenState extends State<SplashScreen>
                 color: AppColors.surface,
                 borderRadius: BorderRadius.circular(AppSizes.radiusL),
                 border: Border.all(
-                  color: (feature['color'] as Color).withValues(alpha:0.3),
+                  color: (feature['color'] as Color).withOpacity(0.3),
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: (feature['color'] as Color).withValues(alpha:0.1),
+                    color: (feature['color'] as Color).withOpacity(0.1),
                     blurRadius: 12,
                   ),
                 ],
@@ -410,7 +410,7 @@ class _SplashScreenState extends State<SplashScreen>
                     width: 44,
                     height: 44,
                     decoration: BoxDecoration(
-                      color: (feature['color'] as Color).withValues(alpha:0.15),
+                      color: (feature['color'] as Color).withOpacity(0.15),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -454,13 +454,13 @@ class _SplashScreenState extends State<SplashScreen>
             gradient: LinearGradient(
               colors: [
                 AppColors.signalCorps,
-                AppColors.signalCorps.withValues(alpha:0.85),
+                AppColors.signalCorps.withOpacity(0.85),
               ],
             ),
             borderRadius: BorderRadius.circular(AppSizes.radiusL),
             boxShadow: [
               BoxShadow(
-                color: AppColors.signalCorps.withValues(alpha:0.4),
+                color: AppColors.signalCorps.withOpacity(0.4),
                 blurRadius: 20,
                 offset: const Offset(0, 8),
               ),
@@ -481,7 +481,7 @@ class _SplashScreenState extends State<SplashScreen>
               Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha:0.2),
+                  color: Colors.white.withOpacity(0.2),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -499,7 +499,7 @@ class _SplashScreenState extends State<SplashScreen>
             .shimmer(
               delay: 2000.ms,
               duration: 1500.ms,
-              color: Colors.white.withValues(alpha:0.2),
+              color: Colors.white.withOpacity(0.2),
             ),
       ),
     ).animate(delay: 1200.ms).fadeIn().slideY(begin: 0.3, end: 0);
@@ -519,7 +519,7 @@ class _SplashScreenState extends State<SplashScreen>
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.signalCorps.withValues(alpha:0.5),
+                    color: AppColors.signalCorps.withOpacity(0.5),
                     blurRadius: 8,
                   ),
                 ],
@@ -542,7 +542,7 @@ class _SplashScreenState extends State<SplashScreen>
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.signalCorps.withValues(alpha:0.5),
+                    color: AppColors.signalCorps.withOpacity(0.5),
                     blurRadius: 8,
                   ),
                 ],
@@ -554,7 +554,7 @@ class _SplashScreenState extends State<SplashScreen>
         Text(
           'Signal Corps Learning System',
           style: AppTextStyles.labelSmall.copyWith(
-            color: AppColors.textMuted.withValues(alpha:0.5),
+            color: AppColors.textMuted.withOpacity(0.5),
             fontSize: 10,
             letterSpacing: 1,
           ),

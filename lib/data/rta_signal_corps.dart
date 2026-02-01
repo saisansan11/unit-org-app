@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// โครงสร้างหน่วยทหารสื่อสาร กองทัพบก (ข้อมูลถูกต้อง 100% จาก PDF)
+/// โครงสร้างหน่วยทหารสื่อสาร กองทัพบก
 /// Royal Thai Army Signal Corps Organization
-/// อ้างอิง: ผังการจัดหน่วย ทบ. และ นขต.
+/// อ้างอิง: เว็บไซต์ signal.rta.mi.th, signalschool.ac.th, และ rta.mi.th
+/// ปรับปรุงข้อมูล: 2567
 
 class RTASignalCorps {
   // =============================================
@@ -15,7 +16,7 @@ class RTASignalCorps {
       id: 'signal_dept',
       name: 'กรมการทหารสื่อสาร',
       nameEn: 'Signal Department',
-      abbreviation: 'กส.',
+      abbreviation: 'สส.',
       level: UnitLevel.department,
       parentId: null,
       location: UnitLocation(
@@ -38,12 +39,12 @@ class RTASignalCorps {
       color: Color(0xFFFF9500),
     ),
 
-    // ศูนย์การสื่อสาร กส.
+    // ศูนย์การสื่อสาร สส.
     SignalUnit(
       id: 'signal_center',
       name: 'ศูนย์การสื่อสาร',
       nameEn: 'Signal Center',
-      abbreviation: 'ศส.กส.',
+      abbreviation: 'ศส.สส.',
       level: UnitLevel.center,
       parentId: 'signal_dept',
       location: UnitLocation(
@@ -60,6 +61,83 @@ class RTASignalCorps {
         'ดำเนินการระบบสื่อสารดาวเทียมทหาร',
         'ดำเนินการระบบโทรคมนาคมทหาร',
         'บริการข่ายสื่อสารทางทหาร',
+      ],
+      childUnitIds: ['signal_center_hq', 'signal_center_ops', 'signal_center_tech'],
+      color: Color(0xFFFF9500),
+    ),
+
+    // กองบังคับการ ศส.สส.
+    SignalUnit(
+      id: 'signal_center_hq',
+      name: 'กองบังคับการ',
+      nameEn: 'Headquarters',
+      abbreviation: 'บก.ศส.สส.',
+      level: UnitLevel.company,
+      parentId: 'signal_center',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8191,
+        longitude: 100.5150,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองบังคับการศูนย์การสื่อสาร ดำเนินการด้านธุรการและกำลังพล',
+      missions: [
+        'ดำเนินการด้านกำลังพลให้แก่ศูนย์การสื่อสาร',
+        'ดำเนินการด้านธุรการ การเงิน และส่งกำลังบำรุง',
+      ],
+      childUnitIds: [],
+      color: Color(0xFFFF9500),
+    ),
+
+    // กองปฏิบัติการ ศส.สส.
+    SignalUnit(
+      id: 'signal_center_ops',
+      name: 'กองปฏิบัติการ',
+      nameEn: 'Operations Division',
+      abbreviation: 'กปก.ศส.สส.',
+      level: UnitLevel.company,
+      parentId: 'signal_center',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8191,
+        longitude: 100.5150,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองปฏิบัติการศูนย์การสื่อสาร ดำเนินการควบคุมและปฏิบัติการสื่อสาร',
+      missions: [
+        'ควบคุมการสื่อสารของกองทัพบก',
+        'ดำเนินการระบบสื่อสารดาวเทียมและโทรคมนาคมทหาร',
+        'บริการข่ายสื่อสารทางทหาร',
+      ],
+      childUnitIds: [],
+      color: Color(0xFFFF9500),
+    ),
+
+    // กองเทคนิค ศส.สส.
+    SignalUnit(
+      id: 'signal_center_tech',
+      name: 'กองเทคนิค',
+      nameEn: 'Technical Division',
+      abbreviation: 'กทค.ศส.สส.',
+      level: UnitLevel.company,
+      parentId: 'signal_center',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8191,
+        longitude: 100.5150,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองเทคนิคศูนย์การสื่อสาร ดำเนินการด้านเทคนิคและซ่อมบำรุงระบบสื่อสาร',
+      missions: [
+        'ดำเนินการด้านเทคนิคระบบสื่อสาร',
+        'ซ่อมบำรุงอุปกรณ์สื่อสาร',
+        'พัฒนาและปรับปรุงระบบสื่อสาร',
       ],
       childUnitIds: [],
       color: Color(0xFFFF9500),
@@ -88,6 +166,87 @@ class RTASignalCorps {
         'วิจัยและพัฒนาด้านการสื่อสารทหาร',
         'เป็นศูนย์กลางความรู้ด้านการสื่อสาร',
       ],
+      childUnitIds: ['school_hq', 'school_edu', 'school_cadet_bn'],
+      color: Color(0xFFFF9500),
+    ),
+
+    // กองบังคับการ รร.ส.สส.
+    SignalUnit(
+      id: 'school_hq',
+      name: 'กองบังคับการ',
+      nameEn: 'Headquarters Division',
+      abbreviation: 'บก.รร.ส.สส.',
+      level: UnitLevel.company,
+      parentId: 'signal_school',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8185,
+        longitude: 100.5145,
+      ),
+      commanderRank: 'พันเอก',
+      description: 'กองบังคับการโรงเรียนทหารสื่อสาร รับผิดชอบงานธุรการ กำลังพล และการวางแผนการศึกษา',
+      missions: [
+        'ดำเนินการด้านกำลังพลให้แก่โรงเรียนทหารสื่อสาร',
+        'ดำเนินการเกี่ยวกับแผนการศึกษา ประสานงาน กำหนดตารางฝึกศึกษา',
+        'ดำเนินการด้านการสนับสนุนกิจกรรมต่างๆ สิ่งอุปกรณ์ อาคารที่ใช้สำหรับการเรียนการสอน',
+        'ดำเนินการด้านการประเมินผลการศึกษา ใบประกาศนียบัตร ติดตามผลการประเมินหลักสูตร',
+      ],
+      childUnitIds: [],
+      color: Color(0xFFFF9500),
+    ),
+
+    // กองการศึกษา รร.ส.สส.
+    SignalUnit(
+      id: 'school_edu',
+      name: 'กองการศึกษา',
+      nameEn: 'Education Division',
+      abbreviation: 'กศ.รร.ส.สส.',
+      level: UnitLevel.company,
+      parentId: 'signal_school',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8185,
+        longitude: 100.5145,
+      ),
+      commanderRank: 'พันเอก',
+      description: 'กองการศึกษาโรงเรียนทหารสื่อสาร รับผิดชอบการจัดการเรียนการสอนด้านเทคโนโลยีสารสนเทศและการสื่อสาร',
+      missions: [
+        'ดำเนินการจัดการเรียนการสอนตามหลักสูตรต่างๆ',
+        'พัฒนาหลักสูตรและจัดการเรียนการสอนให้ทันสมัย',
+        'พัฒนาครูอาจารย์และบุคลากรทางการศึกษา',
+        'วิจัยและพัฒนาด้านการศึกษาทางทหาร',
+      ],
+      childUnitIds: [],
+      color: Color(0xFFFF9500),
+    ),
+
+    // กองพันนักเรียน รร.ส.สส.
+    SignalUnit(
+      id: 'school_cadet_bn',
+      name: 'กองพันนักเรียน',
+      nameEn: 'Cadet Battalion',
+      abbreviation: 'พัน.นร.รร.ส.สส.',
+      level: UnitLevel.battalion,
+      parentId: 'signal_school',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8185,
+        longitude: 100.5145,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองพันนักเรียนโรงเรียนทหารสื่อสาร รับผิดชอบการฝึกศึกษาทางยุทธวิธีและกำกับดูแลนักเรียน',
+      missions: [
+        'ดำเนินการด้านการฝึกศึกษาทางยุทธวิธีให้กับนักเรียนนายสิบ',
+        'กำกับดูแลนายทหารนักเรียนและนายสิบนักเรียนระหว่างการศึกษา',
+        'ฝึกความเป็นผู้นำและวินัยทหาร',
+        'สนับสนุนกิจกรรมนักเรียนทหารสื่อสาร',
+      ],
       childUnitIds: [],
       color: Color(0xFFFF9500),
     ),
@@ -97,7 +256,7 @@ class RTASignalCorps {
       id: 'signal_factory',
       name: 'กองโรงงานซ่อมสร้างเครื่องสื่อสาร',
       nameEn: 'Signal Equipment Factory',
-      abbreviation: 'กรส.กส.',
+      abbreviation: 'กรส.สส.',
       level: UnitLevel.factory,
       parentId: 'signal_dept',
       location: UnitLocation(
@@ -115,6 +274,81 @@ class RTASignalCorps {
         'ดัดแปลง ปรับปรุงอุปกรณ์สื่อสาร',
         'ทดสอบและควบคุมคุณภาพ',
       ],
+      childUnitIds: ['factory_hq', 'factory_repair', 'factory_production'],
+      color: Color(0xFFFF9500),
+    ),
+
+    // กองบังคับการ กรส.สส.
+    SignalUnit(
+      id: 'factory_hq',
+      name: 'กองบังคับการ',
+      nameEn: 'Headquarters',
+      abbreviation: 'บก.กรส.สส.',
+      level: UnitLevel.company,
+      parentId: 'signal_factory',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8195,
+        longitude: 100.5155,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองบังคับการกองโรงงาน ดำเนินการด้านธุรการและกำลังพล',
+      missions: [
+        'ดำเนินการด้านกำลังพลให้แก่กองโรงงาน',
+        'ดำเนินการด้านธุรการ การเงิน และส่งกำลังบำรุง',
+      ],
+      childUnitIds: [],
+      color: Color(0xFFFF9500),
+    ),
+
+    // กองซ่อม กรส.สส.
+    SignalUnit(
+      id: 'factory_repair',
+      name: 'กองซ่อม',
+      nameEn: 'Repair Division',
+      abbreviation: 'กซ.กรส.สส.',
+      level: UnitLevel.company,
+      parentId: 'signal_factory',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8195,
+        longitude: 100.5155,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองซ่อม ดำเนินการซ่อมบำรุงยุทโธปกรณ์สายสื่อสาร',
+      missions: [
+        'ซ่อมบำรุงยุทโธปกรณ์สายสื่อสารขั้นคลัง',
+        'ดัดแปลง ปรับปรุงอุปกรณ์สื่อสาร',
+      ],
+      childUnitIds: [],
+      color: Color(0xFFFF9500),
+    ),
+
+    // กองผลิต กรส.สส.
+    SignalUnit(
+      id: 'factory_production',
+      name: 'กองผลิต',
+      nameEn: 'Production Division',
+      abbreviation: 'กผ.กรส.สส.',
+      level: UnitLevel.company,
+      parentId: 'signal_factory',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8195,
+        longitude: 100.5155,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองผลิต ดำเนินการผลิตอุปกรณ์สื่อสาร',
+      missions: [
+        'ผลิตอุปกรณ์สื่อสาร',
+        'ทดสอบและควบคุมคุณภาพ',
+      ],
       childUnitIds: [],
       color: Color(0xFFFF9500),
     ),
@@ -124,7 +358,7 @@ class RTASignalCorps {
       id: 'ew_center',
       name: 'ศูนย์สงครามอิเล็กทรอนิกส์',
       nameEn: 'Electronic Warfare Center',
-      abbreviation: 'ศสอ.',
+      abbreviation: 'ศสอ.สส.',
       level: UnitLevel.center,
       parentId: 'signal_dept',
       location: UnitLocation(
@@ -142,13 +376,89 @@ class RTASignalCorps {
         'วิเคราะห์และข่าวกรองสัญญาณ',
         'ฝึกอบรมด้านสงครามอิเล็กทรอนิกส์',
       ],
+      childUnitIds: ['ew_center_hq', 'ew_center_ops', 'ew_center_intel'],
+      color: Color(0xFFFF5722),
+    ),
+
+    // กองบังคับการ ศสอ.สส.
+    SignalUnit(
+      id: 'ew_center_hq',
+      name: 'กองบังคับการ',
+      nameEn: 'Headquarters',
+      abbreviation: 'บก.ศสอ.สส.',
+      level: UnitLevel.company,
+      parentId: 'ew_center',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8192,
+        longitude: 100.5151,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองบังคับการศูนย์สงครามอิเล็กทรอนิกส์ ดำเนินการด้านธุรการและกำลังพล',
+      missions: [
+        'ดำเนินการด้านกำลังพลให้แก่ศูนย์สงครามอิเล็กทรอนิกส์',
+        'ดำเนินการด้านธุรการ การเงิน และส่งกำลังบำรุง',
+      ],
+      childUnitIds: [],
+      color: Color(0xFFFF5722),
+    ),
+
+    // กองปฏิบัติการ ศสอ.สส.
+    SignalUnit(
+      id: 'ew_center_ops',
+      name: 'กองปฏิบัติการ',
+      nameEn: 'Operations Division',
+      abbreviation: 'กปก.ศสอ.สส.',
+      level: UnitLevel.company,
+      parentId: 'ew_center',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8192,
+        longitude: 100.5151,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองปฏิบัติการ ดำเนินการปฏิบัติการสงครามอิเล็กทรอนิกส์',
+      missions: [
+        'ดำเนินการ ESM/ECM/ECCM',
+        'ปฏิบัติการสงครามอิเล็กทรอนิกส์',
+        'ฝึกอบรมด้านสงครามอิเล็กทรอนิกส์',
+      ],
+      childUnitIds: [],
+      color: Color(0xFFFF5722),
+    ),
+
+    // กองข่าวกรองสัญญาณ ศสอ.สส.
+    SignalUnit(
+      id: 'ew_center_intel',
+      name: 'กองข่าวกรองสัญญาณ',
+      nameEn: 'Signal Intelligence Division',
+      abbreviation: 'กขส.ศสอ.สส.',
+      level: UnitLevel.company,
+      parentId: 'ew_center',
+      location: UnitLocation(
+        name: 'สะพานแดง',
+        province: 'กรุงเทพมหานคร',
+        district: 'บางซื่อ',
+        latitude: 13.8192,
+        longitude: 100.5151,
+      ),
+      commanderRank: 'พันโท',
+      description: 'กองข่าวกรองสัญญาณ ดำเนินการวิเคราะห์และข่าวกรองสัญญาณ',
+      missions: [
+        'วิเคราะห์และข่าวกรองสัญญาณ',
+        'รวบรวมและประมวลผลข่าวสารสัญญาณ',
+      ],
       childUnitIds: [],
       color: Color(0xFFFF5722),
     ),
   ];
 
   // =============================================
-  // หน่วยสื่อสารประจำกองทัพภาค (ข้อมูลจาก PDF)
+  // หน่วยสื่อสารประจำกองทัพภาค (ข้อมูลจากเว็บไซต์ทางการ)
   // กองพันทหารสื่อสาร (ส.พัน.) ขึ้นตรง ทภ.
   // =============================================
 

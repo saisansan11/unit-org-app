@@ -17,8 +17,10 @@ import 'unit_detail_screen.dart';
 import 'unit_statistics_screen.dart';
 import 'unit_comparison_screen.dart';
 import 'favorites_screen.dart';
+import 'notes_screen.dart';
 import '../services/favorites_service.dart';
 import '../services/recent_units_service.dart';
+import '../services/notes_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -44,6 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<int> _getFavoritesCount() async {
     await FavoritesService.instance.init();
     return FavoritesService.instance.count;
+  }
+
+  Future<int> _getNotesCount() async {
+    await NotesService.instance.init();
+    return NotesService.instance.count;
   }
 
   @override
@@ -161,6 +168,57 @@ Row(
                 ),
               ),
             ).animate().fadeIn(delay: 200.ms).scale(begin: const Offset(0.8, 0.8)),
+            const SizedBox(width: 8),
+            // Notes button
+            GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const NotesScreen()),
+              ),
+              child: Container(
+                width: 48,
+                height: 48,
+                decoration: BentoDecoration.card(),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    const Icon(
+                      Icons.note_alt_outlined,
+                      color: AppColors.accentTeal,
+                    ),
+                    // Badge showing count
+                    FutureBuilder<int>(
+                      future: _getNotesCount(),
+                      builder: (context, snapshot) {
+                        final count = snapshot.data ?? 0;
+                        if (count == 0) return const SizedBox.shrink();
+                        return Positioned(
+                          top: 6,
+                          right: 6,
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: const BoxDecoration(
+                              color: AppColors.accentTeal,
+                              shape: BoxShape.circle,
+                            ),
+                            constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+                            child: Text(
+                              '$count',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 9,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ).animate().fadeIn(delay: 225.ms).scale(begin: const Offset(0.8, 0.8)),
             const SizedBox(width: 8),
             // Settings button
             GestureDetector(

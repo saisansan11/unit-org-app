@@ -3,6 +3,7 @@ import '../app/constants.dart';
 import '../data/rta_signal_corps.dart';
 import '../services/favorites_service.dart';
 import '../services/recent_units_service.dart';
+import '../services/notes_service.dart';
 import 'map_screen.dart';
 
 class UnitDetailScreen extends StatefulWidget {
@@ -16,24 +17,27 @@ class UnitDetailScreen extends StatefulWidget {
 
 class _UnitDetailScreenState extends State<UnitDetailScreen> {
   bool _isFavorite = false;
+  UnitNote? _note;
 
   SignalUnit get unit => widget.unit;
 
   @override
   void initState() {
     super.initState();
-    _loadFavoriteStatus();
+    _loadData();
   }
 
-  Future<void> _loadFavoriteStatus() async {
+  Future<void> _loadData() async {
     await FavoritesService.instance.init();
     await RecentUnitsService.instance.init();
+    await NotesService.instance.init();
 
     // Track this unit as recently viewed
     await RecentUnitsService.instance.addRecent(unit.id);
 
     setState(() {
       _isFavorite = FavoritesService.instance.isFavorite(unit.id);
+      _note = NotesService.instance.getNote(unit.id);
     });
   }
 
@@ -366,7 +370,11 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
                         }).toList(),
                       ),
                     ),
+                    const SizedBox(height: 16),
                   ],
+
+                  // My Notes
+                  _buildNotesCard(),
 
                   const SizedBox(height: 40),
                 ],
@@ -567,6 +575,223 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
               color: unit.color.withOpacity(0.5),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNotesCard() {
+    final hasNote = _note != null && _note!.content.isNotEmpty;
+
+    return GestureDetector(
+      onTap: _showNoteEditor,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: hasNote
+              ? AppColors.accentTeal.withOpacity(0.08)
+              : AppColors.surface,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: hasNote
+                ? AppColors.accentTeal.withOpacity(0.3)
+                : AppColors.border,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  hasNote ? Icons.note_alt : Icons.note_add_outlined,
+                  size: 18,
+                  color: AppColors.accentTeal,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'บันทึกของฉัน',
+                  style: AppTextStyles.labelMedium.copyWith(
+                    color: AppColors.textMuted,
+                  ),
+                ),
+                const Spacer(),
+                Icon(
+                  Icons.edit_outlined,
+                  size: 16,
+                  color: AppColors.accentTeal,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            if (hasNote)
+              Text(
+                _note!.content,
+                style: AppTextStyles.bodyMedium,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+              )
+            else
+              Text(
+                'แตะเพื่อเพิ่มบันทึก...',
+                style: AppTextStyles.bodyMedium.copyWith(
+                  color: AppColors.textMuted,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showNoteEditor() {
+    final controller = TextEditingController(text: _note?.content ?? '');
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+          ),
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Handle
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: AppColors.border,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              // Header
+              Row(
+                children: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: AppColors.accentTeal.withOpacity(0.12),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(
+                      Icons.note_alt,
+                      color: AppColors.accentTeal,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('บันทึก', style: AppTextStyles.titleLarge),
+                        Text(
+                          unit.abbreviation,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: unit.color,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (_note != null)
+                    IconButton(
+                      onPressed: () async {
+                        Navigator.pop(context);
+                        await NotesService.instance.deleteNote(unit.id);
+                        setState(() => _note = null);
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('ลบบันทึกแล้ว'),
+                              behavior: SnackBarBehavior.floating,
+                            ),
+                          );
+                        }
+                      },
+                      icon: const Icon(Icons.delete_outline),
+                      color: AppColors.error,
+                    ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              // Text field
+              TextField(
+                controller: controller,
+                maxLines: 5,
+                autofocus: true,
+                decoration: InputDecoration(
+                  hintText: 'เขียนบันทึกเกี่ยวกับหน่วยนี้...',
+                  hintStyle: const TextStyle(color: AppColors.textMuted),
+                  filled: true,
+                  fillColor: AppColors.background,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: const EdgeInsets.all(16),
+                ),
+              ),
+              const SizedBox(height: 20),
+              // Save button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final content = controller.text.trim();
+                    Navigator.pop(context);
+                    if (content.isNotEmpty) {
+                      await NotesService.instance.saveNote(unit.id, content);
+                      setState(() {
+                        _note = NotesService.instance.getNote(unit.id);
+                      });
+                      if (mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('บันทึกแล้ว'),
+                            behavior: SnackBarBehavior.floating,
+                          ),
+                        );
+                      }
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.accentTeal,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    'บันทึก',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+            ],
+          ),
         ),
       ),
     );

@@ -18,6 +18,7 @@ import 'unit_statistics_screen.dart';
 import 'unit_comparison_screen.dart';
 import 'favorites_screen.dart';
 import '../services/favorites_service.dart';
+import '../services/recent_units_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _initProgress() async {
     await ProgressService.instance.init();
     await FavoritesService.instance.init();
+    await RecentUnitsService.instance.init();
     if (mounted) setState(() {});
   }
 
@@ -63,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 16),
                     _buildQuickUnitSearch(),
                     const SizedBox(height: 20),
+                    _buildRecentUnits(),
                     _buildDailyGoalsCard(),
                     const SizedBox(height: 16),
                     _buildReviewReminder(),
@@ -249,6 +252,174 @@ Row(
               builder: (_) => UnitDetailScreen(unit: unit),
             ),
           );
+        },
+      ),
+    );
+  }
+
+  Widget _buildRecentUnits() {
+    final recentIds = RecentUnitsService.instance.recentIds;
+    if (recentIds.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    final recentUnits = recentIds
+        .map((id) => RTASignalCorps.getUnitById(id))
+        .where((u) => u != null)
+        .cast<SignalUnit>()
+        .take(5)
+        .toList();
+
+    if (recentUnits.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
+                color: AppColors.accentIndigo.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: const Icon(
+                Icons.history_rounded,
+                color: AppColors.accentIndigo,
+                size: 16,
+              ),
+            ),
+            const SizedBox(width: 10),
+            const Text('ดูล่าสุด', style: AppTextStyles.titleMedium),
+            const Spacer(),
+            if (recentIds.length > 5)
+              GestureDetector(
+                onTap: () => _showAllRecentUnits(),
+                child: Text(
+                  'ดูทั้งหมด',
+                  style: AppTextStyles.labelSmall.copyWith(
+                    color: AppColors.primary,
+                  ),
+                ),
+              ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 80,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: recentUnits.length,
+            itemBuilder: (context, index) {
+              final unit = recentUnits[index];
+              return Padding(
+                padding: EdgeInsets.only(right: index < recentUnits.length - 1 ? 10 : 0),
+                child: _buildRecentUnitChip(unit),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 20),
+      ],
+    ).animate().fadeIn(delay: 180.ms, duration: 400.ms).slideY(begin: 0.1);
+  }
+
+  Widget _buildRecentUnitChip(SignalUnit unit) {
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => UnitDetailScreen(unit: unit)),
+      ),
+      child: Container(
+        width: 140,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: unit.color.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: unit.color.withValues(alpha: 0.2)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: unit.color.withValues(alpha: 0.15),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      unit.level.symbol,
+                      style: TextStyle(
+                        fontSize: 9,
+                        fontWeight: FontWeight.bold,
+                        color: unit.color,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    unit.abbreviation,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      color: unit.color,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Text(
+              unit.location.province,
+              style: AppTextStyles.bodySmall.copyWith(
+                color: AppColors.textMuted,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAllRecentUnits() {
+    final recentIds = RecentUnitsService.instance.recentIds;
+    final recentUnits = recentIds
+        .map((id) => RTASignalCorps.getUnitById(id))
+        .where((u) => u != null)
+        .cast<SignalUnit>()
+        .toList();
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => _RecentUnitsSheet(
+        units: recentUnits,
+        onUnitSelected: (unit) {
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => UnitDetailScreen(unit: unit)),
+          );
+        },
+        onClearAll: () async {
+          Navigator.pop(context);
+          await RecentUnitsService.instance.clearAll();
+          setState(() {});
         },
       ),
     );
@@ -1660,6 +1831,296 @@ class _UnitSearchSheetState extends State<_UnitSearchSheet> {
                           const SizedBox(width: 4),
                           Text(
                             unit.commanderRank,
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: AppColors.textMuted,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.chevron_right,
+                  color: unit.color.withValues(alpha: 0.5),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Recent Units Sheet for viewing all recently viewed units
+class _RecentUnitsSheet extends StatelessWidget {
+  final List<SignalUnit> units;
+  final Function(SignalUnit) onUnitSelected;
+  final VoidCallback onClearAll;
+
+  const _RecentUnitsSheet({
+    required this.units,
+    required this.onUnitSelected,
+    required this.onClearAll,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.6,
+      minChildSize: 0.4,
+      maxChildSize: 0.9,
+      builder: (context, scrollController) {
+        return Container(
+          decoration: const BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+          ),
+          child: Column(
+            children: [
+              // Handle
+              Container(
+                width: 40,
+                height: 4,
+                margin: const EdgeInsets.only(top: 12),
+                decoration: BoxDecoration(
+                  color: AppColors.border,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              // Header
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: AppColors.accentIndigo.withValues(alpha: 0.12),
+                        borderRadius: BorderRadius.circular(AppSizes.radiusM),
+                      ),
+                      child: const Icon(
+                        Icons.history_rounded,
+                        color: AppColors.accentIndigo,
+                        size: 24,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'ดูล่าสุด',
+                            style: AppTextStyles.titleLarge,
+                          ),
+                          Text(
+                            '${units.length} หน่วย',
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: AppColors.textMuted,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Clear all button
+                    if (units.isNotEmpty)
+                      TextButton.icon(
+                        onPressed: () => _showClearConfirmation(context),
+                        icon: const Icon(Icons.delete_outline, size: 18),
+                        label: const Text('ล้าง'),
+                        style: TextButton.styleFrom(
+                          foregroundColor: AppColors.error,
+                        ),
+                      ),
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.close),
+                      color: AppColors.textMuted,
+                    ),
+                  ],
+                ),
+              ),
+              // List
+              Expanded(
+                child: units.isEmpty
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.history_rounded,
+                              size: 48,
+                              color: AppColors.textMuted,
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              'ยังไม่มีประวัติการดู',
+                              style: AppTextStyles.bodyMedium.copyWith(
+                                color: AppColors.textMuted,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : ListView.builder(
+                        controller: scrollController,
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        itemCount: units.length,
+                        itemBuilder: (context, index) {
+                          final unit = units[index];
+                          return _buildRecentUnitItem(unit, index);
+                        },
+                      ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showClearConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        title: const Text('ล้างประวัติ?'),
+        content: const Text('ต้องการล้างประวัติการดูหน่วยทั้งหมดหรือไม่?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('ยกเลิก'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              onClearAll();
+            },
+            style: TextButton.styleFrom(foregroundColor: AppColors.error),
+            child: const Text('ล้างทั้งหมด'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRecentUnitItem(SignalUnit unit, int index) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => onUnitSelected(unit),
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: AppColors.background,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: unit.color.withValues(alpha: 0.2)),
+            ),
+            child: Row(
+              children: [
+                // Order indicator
+                Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: AppColors.accentIndigo.withValues(alpha: 0.12),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${index + 1}',
+                      style: const TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.accentIndigo,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                // Unit icon
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: unit.color.withValues(alpha: 0.12),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      unit.level.symbol,
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        color: unit.color,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            unit.abbreviation,
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: unit.color,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          if (unit.armyArea != null)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: unit.color.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Text(
+                                'ทภ.${unit.armyArea}',
+                                style: TextStyle(
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.bold,
+                                  color: unit.color,
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        unit.name,
+                        style: AppTextStyles.titleSmall,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 2),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.location_on,
+                            size: 12,
+                            color: AppColors.textMuted,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            unit.location.province,
                             style: AppTextStyles.bodySmall.copyWith(
                               color: AppColors.textMuted,
                             ),

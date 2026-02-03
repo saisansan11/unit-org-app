@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../app/constants.dart';
 import '../data/rta_signal_corps.dart';
 import '../services/favorites_service.dart';
+import '../services/recent_units_service.dart';
 import 'map_screen.dart';
 
 class UnitDetailScreen extends StatefulWidget {
@@ -26,6 +27,11 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
 
   Future<void> _loadFavoriteStatus() async {
     await FavoritesService.instance.init();
+    await RecentUnitsService.instance.init();
+
+    // Track this unit as recently viewed
+    await RecentUnitsService.instance.addRecent(unit.id);
+
     setState(() {
       _isFavorite = FavoritesService.instance.isFavorite(unit.id);
     });

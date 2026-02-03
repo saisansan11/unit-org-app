@@ -1,12 +1,55 @@
 import 'package:flutter/material.dart';
 import '../app/constants.dart';
 import '../data/rta_signal_corps.dart';
+import '../services/favorites_service.dart';
 import 'map_screen.dart';
 
-class UnitDetailScreen extends StatelessWidget {
+class UnitDetailScreen extends StatefulWidget {
   final SignalUnit unit;
 
   const UnitDetailScreen({super.key, required this.unit});
+
+  @override
+  State<UnitDetailScreen> createState() => _UnitDetailScreenState();
+}
+
+class _UnitDetailScreenState extends State<UnitDetailScreen> {
+  bool _isFavorite = false;
+
+  SignalUnit get unit => widget.unit;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFavoriteStatus();
+  }
+
+  Future<void> _loadFavoriteStatus() async {
+    await FavoritesService.instance.init();
+    setState(() {
+      _isFavorite = FavoritesService.instance.isFavorite(unit.id);
+    });
+  }
+
+  Future<void> _toggleFavorite() async {
+    final newStatus = await FavoritesService.instance.toggleFavorite(unit.id);
+    setState(() {
+      _isFavorite = newStatus;
+    });
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            newStatus
+                ? 'เพิ่ม ${unit.abbreviation} ไปยังรายการโปรด'
+                : 'นำ ${unit.abbreviation} ออกจากรายการโปรด',
+          ),
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +77,14 @@ class UnitDetailScreen extends StatelessWidget {
               onPressed: () => Navigator.pop(context),
             ),
             actions: [
+              IconButton(
+                icon: Icon(
+                  _isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: _isFavorite ? AppColors.accentPink : Colors.white,
+                ),
+                onPressed: _toggleFavorite,
+                tooltip: _isFavorite ? 'นำออกจากรายการโปรด' : 'เพิ่มเป็นรายการโปรด',
+              ),
               IconButton(
                 icon: const Icon(Icons.map, color: Colors.white),
                 onPressed: () => _showOnMap(context),

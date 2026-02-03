@@ -519,7 +519,7 @@ class UnitDetailScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const MapScreen(),
+        builder: (_) => MapScreen(focusUnit: unit),
       ),
     );
   }

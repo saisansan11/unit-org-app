@@ -6,7 +6,9 @@ import '../data/rta_signal_corps.dart';
 import 'unit_detail_screen.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+  final SignalUnit? focusUnit;
+
+  const MapScreen({super.key, this.focusUnit});
 
   @override
   State<MapScreen> createState() => _MapScreenState();
@@ -38,6 +40,13 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     _pulseAnimation = Tween<double>(begin: 1.0, end: 1.2).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
+
+    // Focus on unit if provided
+    if (widget.focusUnit != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _selectUnit(widget.focusUnit!);
+      });
+    }
   }
 
   @override

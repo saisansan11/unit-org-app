@@ -15,6 +15,7 @@ import 'learning_path_screen.dart';
 import 'statistics_screen.dart';
 import 'unit_detail_screen.dart';
 import 'unit_statistics_screen.dart';
+import 'unit_comparison_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -549,7 +550,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         const SizedBox(height: AppSizes.bentoGap),
-        // Row 3: Unit Statistics and Achievements
+        // Row 3: Unit Statistics and Comparison
         Row(
           children: [
             Expanded(
@@ -570,18 +571,33 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: _BentoCard(
                 height: 120,
-                backgroundColor: const Color(0xFFFFF8E1),
-                icon: Icons.emoji_events_rounded,
-                iconColor: AppColors.warning,
-                title: 'รางวัล',
-                subtitle: '$unlockedCount / $totalAchievements',
+                backgroundColor: const Color(0xFFE3F2FD),
+                icon: Icons.compare_arrows_rounded,
+                iconColor: AppColors.primary,
+                title: 'เปรียบเทียบ',
+                subtitle: 'เทียบหน่วยคู่กัน',
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const AchievementScreen()),
+                  MaterialPageRoute(builder: (_) => const UnitComparisonScreen()),
                 ),
               ),
             ),
           ],
+        ),
+        const SizedBox(height: AppSizes.bentoGap),
+        // Row 4: Achievements (wide card)
+        _BentoCard(
+          height: 90,
+          backgroundColor: const Color(0xFFFFF8E1),
+          icon: Icons.emoji_events_rounded,
+          iconColor: AppColors.warning,
+          title: 'รางวัลและความสำเร็จ',
+          subtitle: '$unlockedCount / $totalAchievements รางวัล',
+          isWide: true,
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const AchievementScreen()),
+          ),
         ),
       ],
     )
@@ -833,6 +849,7 @@ class _BentoCard extends StatelessWidget {
   final Color iconColor;
   final String title;
   final String subtitle;
+  final bool isWide;
   final VoidCallback? onTap;
 
   const _BentoCard({
@@ -842,6 +859,7 @@ class _BentoCard extends StatelessWidget {
     required this.iconColor,
     required this.title,
     required this.subtitle,
+    this.isWide = false,
     this.onTap,
   });
 
@@ -856,45 +874,91 @@ class _BentoCard extends StatelessWidget {
           backgroundColor: backgroundColor,
           borderRadius: AppSizes.radiusXL,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: iconColor.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(AppSizes.radiusM),
+        child: isWide ? _buildWideLayout() : _buildCompactLayout(),
+      ),
+    );
+  }
+
+  Widget _buildWideLayout() {
+    return Row(
+      children: [
+        Container(
+          width: 52,
+          height: 52,
+          decoration: BoxDecoration(
+            color: iconColor.withValues(alpha: 0.15),
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+          ),
+          child: Icon(icon, color: iconColor, size: 28),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: AppTextStyles.titleLarge.copyWith(
+                  color: AppColors.textPrimary,
+                ),
               ),
-              child: Icon(icon, color: iconColor, size: 24),
+              const SizedBox(height: 4),
+              Text(
+                subtitle,
+                style: AppTextStyles.bodySmall.copyWith(
+                  color: AppColors.textMuted,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Icon(
+          Icons.arrow_forward_ios_rounded,
+          color: iconColor,
+          size: 20,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCompactLayout() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          width: 44,
+          height: 44,
+          decoration: BoxDecoration(
+            color: iconColor.withValues(alpha: 0.15),
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+          ),
+          child: Icon(icon, color: iconColor, size: 24),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              style: AppTextStyles.titleMedium.copyWith(
+                color: AppColors.textPrimary,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  title,
-                  style: AppTextStyles.titleMedium.copyWith(
-                    color: AppColors.textPrimary,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  subtitle,
-                  style: AppTextStyles.labelSmall.copyWith(
-                    color: AppColors.textMuted,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+            Text(
+              subtitle,
+              style: AppTextStyles.labelSmall.copyWith(
+                color: AppColors.textMuted,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 }

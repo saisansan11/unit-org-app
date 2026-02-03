@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'dart:math';
 import '../app/constants.dart';
 import '../models/unit_models.dart';
+import '../models/learning_models.dart';
 import '../data/signal_corps_data.dart';
 import '../services/progress_service.dart';
 
@@ -34,12 +35,32 @@ class _FlashcardScreenState extends State<FlashcardScreen>
   // Stats
   int _knownCount = 0;
   int _learningCount = 0;
+  int _dueCardsCount = 0;
+  bool _showingDueCards = false;
 
   @override
   void initState() {
     super.initState();
     _loadCards();
     _initAnimations();
+    _checkAchievements();
+  }
+
+  void _checkAchievements() {
+    // Check for new achievements after init
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final newAchievements = ProgressService.instance.popRecentAchievements();
+      for (final achievement in newAchievements) {
+        _showAchievementPopup(achievement);
+      }
+    });
+  }
+
+  void _showAchievementPopup(dynamic achievement) {
+    showDialog(
+      context: context,
+      builder: (context) => _AchievementPopup(achievement: achievement),
+    );
   }
 
   void _initAnimations() {
@@ -68,13 +89,31 @@ class _FlashcardScreenState extends State<FlashcardScreen>
   }
 
   void _loadCards() {
+    List<UnitFlashcard> allCards;
     if (widget.category != null) {
-      _cards =
-          List.from(SignalCorpsData.getFlashcardsByCategory(widget.category!));
+      allCards = List.from(SignalCorpsData.getFlashcardsByCategory(widget.category!));
     } else {
-      _cards = List.from(SignalCorpsData.flashcards);
+      allCards = List.from(SignalCorpsData.flashcards);
     }
-    _cards.shuffle();
+
+    // Get due cards based on Spaced Repetition
+    final progress = ProgressService.instance;
+    final allCardIds = allCards.map((c) => c.id).toList();
+    final dueCardIds = progress.getDueCards(allCardIds);
+
+    // Separate due cards and other cards
+    final dueCards = allCards.where((c) => dueCardIds.contains(c.id)).toList();
+    final otherCards = allCards.where((c) => !dueCardIds.contains(c.id)).toList();
+
+    _dueCardsCount = dueCards.length;
+    _showingDueCards = dueCards.isNotEmpty;
+
+    // Shuffle each group
+    dueCards.shuffle();
+    otherCards.shuffle();
+
+    // Due cards first, then others
+    _cards = [...dueCards, ...otherCards];
   }
 
   @override
@@ -339,6 +378,8 @@ class _FlashcardScreenState extends State<FlashcardScreen>
   }
 
   Widget _buildHeader(double progress) {
+    final isDueCard = _currentIndex < _dueCardsCount;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 8, 16, 0),
       child: Column(
@@ -365,9 +406,38 @@ class _FlashcardScreenState extends State<FlashcardScreen>
               Expanded(
                 child: Column(
                   children: [
-                    Text(
-                      widget.category ?? 'Flashcards',
-                      style: AppTextStyles.titleLarge,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.category ?? 'Flashcards',
+                          style: AppTextStyles.titleLarge,
+                        ),
+                        if (_showingDueCards && isDueCard) ...[
+                          const SizedBox(width: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: AppColors.warning.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(AppSizes.radiusS),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.schedule, size: 12, color: AppColors.warning),
+                                const SizedBox(width: 4),
+                                Text(
+                                  'ถึงเวลาทบทวน',
+                                  style: AppTextStyles.labelSmall.copyWith(
+                                    color: AppColors.warning,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -1119,6 +1189,97 @@ class _StatCard extends StatelessWidget {
           ),
           Text(label, style: AppTextStyles.labelMedium),
         ],
+      ),
+    );
+  }
+}
+
+/// Achievement unlock popup
+class _AchievementPopup extends StatelessWidget {
+  final Achievement achievement;
+
+  const _AchievementPopup({required this.achievement});
+
+  Color get _tierColor {
+    switch (achievement.tier) {
+      case AchievementTier.bronze:
+        return const Color(0xFFCD7F32);
+      case AchievementTier.silver:
+        return const Color(0xFFC0C0C0);
+      case AchievementTier.gold:
+        return const Color(0xFFFFD700);
+      case AchievementTier.platinum:
+        return const Color(0xFFE5E4E2);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.all(AppSizes.paddingL),
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(AppSizes.radiusXL),
+          border: Border.all(color: _tierColor, width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: _tierColor.withValues(alpha: 0.3),
+              blurRadius: 24,
+              spreadRadius: 4,
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              '🎉 รางวัลใหม่!',
+              style: AppTextStyles.headlineLarge,
+            ),
+            const SizedBox(height: 16),
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                color: _tierColor.withValues(alpha: 0.2),
+                shape: BoxShape.circle,
+                border: Border.all(color: _tierColor, width: 3),
+              ),
+              child: Center(
+                child: Text(
+                  achievement.icon,
+                  style: const TextStyle(fontSize: 40),
+                ),
+              ),
+            )
+                .animate()
+                .scale(begin: const Offset(0, 0), curve: Curves.elasticOut)
+                .then()
+                .shake(hz: 2, rotation: 0.05),
+            const SizedBox(height: 16),
+            Text(
+              achievement.title,
+              style: AppTextStyles.titleLarge.copyWith(color: _tierColor),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              achievement.description,
+              style: AppTextStyles.bodyMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: _tierColor,
+                foregroundColor: Colors.black,
+              ),
+              child: const Text('เยี่ยมมาก!'),
+            ),
+          ],
+        ),
       ),
     );
   }

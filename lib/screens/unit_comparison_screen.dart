@@ -86,7 +86,7 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.1),
+                color: AppColors.primary.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -109,12 +109,12 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: unit != null
-              ? unit.color.withValues(alpha: 0.1)
+              ? unit.color.withOpacity(0.1)
               : AppColors.background,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: unit != null
-                ? unit.color.withValues(alpha: 0.3)
+                ? unit.color.withOpacity(0.3)
                 : AppColors.border,
           ),
         ),
@@ -125,7 +125,7 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
                     width: 36,
                     height: 36,
                     decoration: BoxDecoration(
-                      color: unit.color.withValues(alpha: 0.15),
+                      color: unit.color.withOpacity(0.15),
                       shape: BoxShape.circle,
                     ),
                     child: Center(
@@ -205,7 +205,7 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.1),
+                color: AppColors.primary.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -426,10 +426,10 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: _unit1!.color.withValues(alpha: 0.08),
+                    color: _unit1!.color.withOpacity(0.08),
                     borderRadius: BorderRadius.circular(8),
                     border: row.isDifferent
-                        ? Border.all(color: _unit1!.color.withValues(alpha: 0.3))
+                        ? Border.all(color: _unit1!.color.withOpacity(0.3))
                         : null,
                   ),
                   child: Text(
@@ -458,10 +458,10 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: _unit2!.color.withValues(alpha: 0.08),
+                    color: _unit2!.color.withOpacity(0.08),
                     borderRadius: BorderRadius.circular(8),
                     border: row.isDifferent
-                        ? Border.all(color: _unit2!.color.withValues(alpha: 0.3))
+                        ? Border.all(color: _unit2!.color.withOpacity(0.3))
                         : null,
                   ),
                   child: Text(
@@ -547,7 +547,7 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
           decoration: BoxDecoration(
-            color: color.withValues(alpha: 0.15),
+            color: color.withOpacity(0.15),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(
@@ -572,7 +572,7 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
                   width: 18,
                   height: 18,
                   decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.1),
+                    color: color.withOpacity(0.1),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -688,7 +688,7 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: color1.withValues(alpha: 0.08),
+                  color: color1.withOpacity(0.08),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -707,7 +707,7 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: color2.withValues(alpha: 0.08),
+                  color: color2.withOpacity(0.08),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -737,9 +737,9 @@ class _UnitComparisonScreenState extends State<UnitComparisonScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.15),
+          color: color.withOpacity(0.15),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color.withValues(alpha: 0.3)),
+          border: Border.all(color: color.withOpacity(0.3)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -920,7 +920,7 @@ class _UnitSelectionSheetState extends State<_UnitSelectionSheet> {
                           width: 44,
                           height: 44,
                           decoration: BoxDecoration(
-                            color: AppColors.primary.withValues(alpha: 0.12),
+                            color: AppColors.primary.withOpacity(0.12),
                             borderRadius: BorderRadius.circular(AppSizes.radiusM),
                           ),
                           child: const Icon(
@@ -1039,7 +1039,7 @@ class _UnitSelectionSheetState extends State<_UnitSelectionSheet> {
             decoration: BoxDecoration(
               color: AppColors.background,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: unit.color.withValues(alpha: 0.2)),
+              border: Border.all(color: unit.color.withOpacity(0.2)),
             ),
             child: Row(
               children: [
@@ -1047,7 +1047,7 @@ class _UnitSelectionSheetState extends State<_UnitSelectionSheet> {
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: unit.color.withValues(alpha: 0.12),
+                    color: unit.color.withOpacity(0.12),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -1084,7 +1084,7 @@ class _UnitSelectionSheetState extends State<_UnitSelectionSheet> {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: unit.color.withValues(alpha: 0.1),
+                                color: unit.color.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
@@ -1128,7 +1128,7 @@ class _UnitSelectionSheetState extends State<_UnitSelectionSheet> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: unit.color.withValues(alpha: 0.1),
+                    color: unit.color.withOpacity(0.1),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(

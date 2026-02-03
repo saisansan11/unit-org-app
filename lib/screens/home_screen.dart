@@ -195,7 +195,7 @@ Row(
           border: Border.all(color: AppColors.border),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
+              color: Colors.black.withOpacity(0.05),
               blurRadius: 10,
               offset: const Offset(0, 2),
             ),
@@ -220,7 +220,7 @@ Row(
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: AppColors.signalCorps.withValues(alpha: 0.1),
+                color: AppColors.signalCorps.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -283,7 +283,7 @@ Row(
               width: 28,
               height: 28,
               decoration: BoxDecoration(
-                color: AppColors.accentIndigo.withValues(alpha: 0.15),
+                color: AppColors.accentIndigo.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(6),
               ),
               child: const Icon(
@@ -337,9 +337,9 @@ Row(
         width: 140,
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: unit.color.withValues(alpha: 0.08),
+          color: unit.color.withOpacity(0.08),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: unit.color.withValues(alpha: 0.2)),
+          border: Border.all(color: unit.color.withOpacity(0.2)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,7 +351,7 @@ Row(
                   width: 24,
                   height: 24,
                   decoration: BoxDecoration(
-                    color: unit.color.withValues(alpha: 0.15),
+                    color: unit.color.withOpacity(0.15),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -444,13 +444,13 @@ Row(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppColors.warning.withValues(alpha: 0.15),
-              AppColors.accentOrange.withValues(alpha: 0.1),
+              AppColors.warning.withOpacity(0.15),
+              AppColors.accentOrange.withOpacity(0.1),
             ],
           ),
           borderRadius: BorderRadius.circular(AppSizes.radiusL),
           border: Border.all(
-            color: AppColors.warning.withValues(alpha: 0.4),
+            color: AppColors.warning.withOpacity(0.4),
           ),
         ),
         child: Row(
@@ -459,7 +459,7 @@ Row(
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: AppColors.warning.withValues(alpha: 0.2),
+                color: AppColors.warning.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(AppSizes.radiusM),
               ),
               child: const Icon(
@@ -521,7 +521,7 @@ Row(
         borderRadius: BorderRadius.circular(AppSizes.radiusL),
         border: Border.all(
           color: goals.allGoalsMet
-              ? AppColors.success.withValues(alpha: 0.5)
+              ? AppColors.success.withOpacity(0.5)
               : AppColors.border,
         ),
       ),
@@ -535,8 +535,8 @@ Row(
                 height: 40,
                 decoration: BoxDecoration(
                   color: goals.allGoalsMet
-                      ? AppColors.success.withValues(alpha: 0.15)
-                      : AppColors.primary.withValues(alpha: 0.15),
+                      ? AppColors.success.withOpacity(0.15)
+                      : AppColors.primary.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(AppSizes.radiusM),
                 ),
                 child: Icon(
@@ -647,7 +647,7 @@ Row(
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.25),
+                      color: Colors.white.withOpacity(0.25),
                       borderRadius: BorderRadius.circular(AppSizes.radiusFull),
                     ),
                     child: const Text(
@@ -676,7 +676,7 @@ Row(
                       Text(
                         '${RTASignalCorps.allCombinedUnits.length} หน่วย',
                         style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.9),
+                          color: Colors.white.withOpacity(0.9),
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
@@ -684,7 +684,7 @@ Row(
                       const SizedBox(width: 8),
                       Icon(
                         Icons.arrow_forward_rounded,
-                        color: Colors.white.withValues(alpha: 0.9),
+                        color: Colors.white.withOpacity(0.9),
                         size: 18,
                       ),
                     ],
@@ -696,7 +696,7 @@ Row(
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
+                color: Colors.white.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(AppSizes.radiusL),
               ),
               child: const Icon(
@@ -859,7 +859,7 @@ Row(
                 width: 32,
                 height: 32,
                 decoration: BoxDecoration(
-                  color: AppColors.accentPink.withValues(alpha: 0.15),
+                  color: AppColors.accentPink.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(AppSizes.radiusS),
                 ),
                 child: const Icon(
@@ -931,7 +931,7 @@ Row(
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: AppColors.accentIndigo.withValues(alpha: 0.15),
+                color: AppColors.accentIndigo.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(AppSizes.radiusS),
               ),
               child: const Icon(
@@ -1121,7 +1121,7 @@ class _BentoCard extends StatelessWidget {
           width: 52,
           height: 52,
           decoration: BoxDecoration(
-            color: iconColor.withValues(alpha: 0.15),
+            color: iconColor.withOpacity(0.15),
             borderRadius: BorderRadius.circular(AppSizes.radiusM),
           ),
           child: Icon(icon, color: iconColor, size: 28),
@@ -1166,7 +1166,7 @@ class _BentoCard extends StatelessWidget {
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: iconColor.withValues(alpha: 0.15),
+            color: iconColor.withOpacity(0.15),
             borderRadius: BorderRadius.circular(AppSizes.radiusM),
           ),
           child: Icon(icon, color: iconColor, size: 24),
@@ -1271,7 +1271,7 @@ class _CategoryTile extends StatelessWidget {
             width: 48,
             height: 48,
             decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: 0.1),
+              color: AppColors.primary.withOpacity(0.1),
               borderRadius: BorderRadius.circular(AppSizes.radiusM),
             ),
             child: Icon(
@@ -1325,7 +1325,7 @@ class _CategoryTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
+        color: color.withOpacity(0.12),
         borderRadius: BorderRadius.circular(AppSizes.radiusFull),
       ),
       child: Text(
@@ -1346,7 +1346,7 @@ class _CategoryTile extends StatelessWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.12),
+          color: color.withOpacity(0.12),
           borderRadius: BorderRadius.circular(AppSizes.radiusM),
         ),
         child: Icon(icon, color: color, size: 20),
@@ -1499,7 +1499,7 @@ class _OptionsSheet extends StatelessWidget {
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.12),
+                    color: color.withOpacity(0.12),
                     borderRadius: BorderRadius.circular(AppSizes.radiusM),
                   ),
                   child: Icon(icon, color: color, size: 24),
@@ -1622,7 +1622,7 @@ class _UnitSearchSheetState extends State<_UnitSearchSheet> {
                           width: 44,
                           height: 44,
                           decoration: BoxDecoration(
-                            color: AppColors.signalCorps.withValues(alpha: 0.12),
+                            color: AppColors.signalCorps.withOpacity(0.12),
                             borderRadius: BorderRadius.circular(AppSizes.radiusM),
                           ),
                           child: const Icon(
@@ -1741,7 +1741,7 @@ class _UnitSearchSheetState extends State<_UnitSearchSheet> {
             decoration: BoxDecoration(
               color: AppColors.background,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: unit.color.withValues(alpha: 0.2)),
+              border: Border.all(color: unit.color.withOpacity(0.2)),
             ),
             child: Row(
               children: [
@@ -1749,7 +1749,7 @@ class _UnitSearchSheetState extends State<_UnitSearchSheet> {
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: unit.color.withValues(alpha: 0.12),
+                    color: unit.color.withOpacity(0.12),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -1786,7 +1786,7 @@ class _UnitSearchSheetState extends State<_UnitSearchSheet> {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: unit.color.withValues(alpha: 0.1),
+                                color: unit.color.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
@@ -1842,7 +1842,7 @@ class _UnitSearchSheetState extends State<_UnitSearchSheet> {
                 ),
                 Icon(
                   Icons.chevron_right,
-                  color: unit.color.withValues(alpha: 0.5),
+                  color: unit.color.withOpacity(0.5),
                 ),
               ],
             ),
@@ -1898,7 +1898,7 @@ class _RecentUnitsSheet extends StatelessWidget {
                       width: 44,
                       height: 44,
                       decoration: BoxDecoration(
-                        color: AppColors.accentIndigo.withValues(alpha: 0.12),
+                        color: AppColors.accentIndigo.withOpacity(0.12),
                         borderRadius: BorderRadius.circular(AppSizes.radiusM),
                       ),
                       child: const Icon(
@@ -2023,7 +2023,7 @@ class _RecentUnitsSheet extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.background,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: unit.color.withValues(alpha: 0.2)),
+              border: Border.all(color: unit.color.withOpacity(0.2)),
             ),
             child: Row(
               children: [
@@ -2032,7 +2032,7 @@ class _RecentUnitsSheet extends StatelessWidget {
                   width: 24,
                   height: 24,
                   decoration: BoxDecoration(
-                    color: AppColors.accentIndigo.withValues(alpha: 0.12),
+                    color: AppColors.accentIndigo.withOpacity(0.12),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -2052,7 +2052,7 @@ class _RecentUnitsSheet extends StatelessWidget {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: unit.color.withValues(alpha: 0.12),
+                    color: unit.color.withOpacity(0.12),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -2089,7 +2089,7 @@ class _RecentUnitsSheet extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: unit.color.withValues(alpha: 0.1),
+                                color: unit.color.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
@@ -2132,7 +2132,7 @@ class _RecentUnitsSheet extends StatelessWidget {
                 ),
                 Icon(
                   Icons.chevron_right,
-                  color: unit.color.withValues(alpha: 0.5),
+                  color: unit.color.withOpacity(0.5),
                 ),
               ],
             ),

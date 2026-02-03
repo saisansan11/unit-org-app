@@ -231,7 +231,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
         border: Border.all(color: AppColors.border),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -267,12 +267,12 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.signalCorps.withValues(alpha: 0.1),
-            AppColors.primary.withValues(alpha: 0.05),
+            AppColors.signalCorps.withOpacity(0.1),
+            AppColors.primary.withOpacity(0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.signalCorps.withValues(alpha: 0.2)),
+        border: Border.all(color: AppColors.signalCorps.withOpacity(0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -311,7 +311,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
         decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.1),
+          color: color.withOpacity(0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -386,16 +386,16 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: isSelected ? color : color.withValues(alpha: 0.1),
+          color: isSelected ? color : color.withOpacity(0.1),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isSelected ? color : color.withValues(alpha: 0.3),
+            color: isSelected ? color : color.withOpacity(0.3),
             width: isSelected ? 2 : 1,
           ),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: color.withValues(alpha: 0.3),
+                    color: color.withOpacity(0.3),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -467,7 +467,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
             decoration: BoxDecoration(
               color: AppColors.surface,
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: unit.color.withValues(alpha: 0.3)),
+              border: Border.all(color: unit.color.withOpacity(0.3)),
             ),
             child: Row(
               children: [
@@ -475,7 +475,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: unit.color.withValues(alpha: 0.15),
+                    color: unit.color.withOpacity(0.15),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(_getUnitIcon(unit), color: unit.color, size: 20),
@@ -490,7 +490,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: unit.color.withValues(alpha: 0.15),
+                              color: unit.color.withOpacity(0.15),
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(
@@ -538,7 +538,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                     ],
                   ),
                 ),
-                Icon(Icons.chevron_right, color: unit.color.withValues(alpha: 0.5)),
+                Icon(Icons.chevron_right, color: unit.color.withOpacity(0.5)),
               ],
             ),
           ),
@@ -558,10 +558,10 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
+        border: Border.all(color: color.withOpacity(0.3)),
         boxShadow: [
           BoxShadow(
-            color: color.withValues(alpha: 0.1),
+            color: color.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 4),
           ),
@@ -575,7 +575,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [color.withValues(alpha: 0.15), color.withValues(alpha: 0.05)],
+                colors: [color.withOpacity(0.15), color.withOpacity(0.05)],
               ),
               borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
             ),
@@ -584,7 +584,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: color.withValues(alpha: 0.2),
+                    color: color.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(icon, color: color, size: 24),
@@ -646,12 +646,12 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  unit.color.withValues(alpha: 0.2),
-                  unit.color.withValues(alpha: 0.08),
+                  unit.color.withOpacity(0.2),
+                  unit.color.withOpacity(0.08),
                 ],
               ),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: unit.color.withValues(alpha: 0.5)),
+              border: Border.all(color: unit.color.withOpacity(0.5)),
             ),
             child: Row(
               children: [
@@ -663,7 +663,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                       width: 32,
                       height: 32,
                       decoration: BoxDecoration(
-                        color: unit.color.withValues(alpha: 0.15),
+                        color: unit.color.withOpacity(0.15),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: AnimatedRotation(
@@ -685,7 +685,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: unit.color.withValues(alpha: 0.2),
+                    color: unit.color.withOpacity(0.2),
                     shape: BoxShape.circle,
                     border: Border.all(color: unit.color, width: 2),
                   ),
@@ -758,7 +758,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: unit.color.withValues(alpha: 0.15),
+                      color: unit.color.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -833,7 +833,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                 width: 24,
                 child: CustomPaint(
                   painter: _TreeLinePainter(
-                    color: parentColor.withValues(alpha: 0.4),
+                    color: parentColor.withOpacity(0.4),
                     isLast: isLast,
                   ),
                 ),
@@ -869,10 +869,10 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
           decoration: BoxDecoration(
             color: AppColors.surface,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: unit.color.withValues(alpha: 0.3)),
+            border: Border.all(color: unit.color.withOpacity(0.3)),
             boxShadow: [
               BoxShadow(
-                color: unit.color.withValues(alpha: 0.08),
+                color: unit.color.withOpacity(0.08),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -888,7 +888,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                     width: 26,
                     height: 26,
                     decoration: BoxDecoration(
-                      color: unit.color.withValues(alpha: 0.12),
+                      color: unit.color.withOpacity(0.12),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: AnimatedRotation(
@@ -907,7 +907,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                   width: 26,
                   child: Icon(
                     _getUnitIcon(unit),
-                    color: unit.color.withValues(alpha: 0.6),
+                    color: unit.color.withOpacity(0.6),
                     size: 18,
                   ),
                 ),
@@ -916,7 +916,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
-                  color: unit.color.withValues(alpha: 0.15),
+                  color: unit.color.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
@@ -970,7 +970,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
-                    color: unit.color.withValues(alpha: 0.12),
+                    color: unit.color.withOpacity(0.12),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
@@ -1024,9 +1024,9 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: area.color.withValues(alpha: 0.05),
+        color: area.color.withOpacity(0.05),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: area.color.withValues(alpha: 0.2)),
+        border: Border.all(color: area.color.withOpacity(0.2)),
       ),
       child: Column(
         children: [
@@ -1034,7 +1034,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: area.color.withValues(alpha: 0.1),
+              color: area.color.withOpacity(0.1),
               borderRadius: const BorderRadius.vertical(top: Radius.circular(11)),
             ),
             child: Row(
@@ -1043,7 +1043,7 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
                   width: 36,
                   height: 36,
                   decoration: BoxDecoration(
-                    color: area.color.withValues(alpha: 0.2),
+                    color: area.color.withOpacity(0.2),
                     shape: BoxShape.circle,
                     border: Border.all(color: area.color, width: 2),
                   ),
@@ -1118,10 +1118,10 @@ class _AnimatedOrgChartScreenState extends State<AnimatedOrgChartScreen>
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: color.withValues(alpha: 0.3)),
+          border: Border.all(color: color.withOpacity(0.3)),
           boxShadow: [
             BoxShadow(
-              color: color.withValues(alpha: 0.1),
+              color: color.withOpacity(0.1),
               blurRadius: 4,
               offset: const Offset(0, 1),
             ),

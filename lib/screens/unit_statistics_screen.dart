@@ -51,7 +51,7 @@ class _UnitStatisticsScreenState extends State<UnitStatisticsScreen>
                     end: Alignment.bottomRight,
                     colors: [
                       AppColors.signalCorps,
-                      AppColors.signalCorps.withValues(alpha: 0.8),
+                      AppColors.signalCorps.withOpacity(0.8),
                     ],
                   ),
                 ),
@@ -67,7 +67,7 @@ class _UnitStatisticsScreenState extends State<UnitStatisticsScreen>
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.2),
+                                color: Colors.white.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: const Icon(
@@ -325,10 +325,10 @@ class _UnitStatisticsScreenState extends State<UnitStatisticsScreen>
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.1),
+                        color: AppColors.primary.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: AppColors.primary.withValues(alpha: 0.3),
+                          color: AppColors.primary.withOpacity(0.3),
                         ),
                       ),
                       child: Row(
@@ -453,7 +453,7 @@ class _UnitStatisticsScreenState extends State<UnitStatisticsScreen>
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: color.withValues(alpha: 0.15),
+                        color: color.withOpacity(0.15),
                         shape: BoxShape.circle,
                       ),
                       child: Center(
@@ -488,7 +488,7 @@ class _UnitStatisticsScreenState extends State<UnitStatisticsScreen>
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
-                        color: color.withValues(alpha: 0.15),
+                        color: color.withOpacity(0.15),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
@@ -521,7 +521,7 @@ class _UnitStatisticsScreenState extends State<UnitStatisticsScreen>
           width: 32,
           height: 32,
           decoration: BoxDecoration(
-            color: color.withValues(alpha: 0.15),
+            color: color.withOpacity(0.15),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(icon, color: color, size: 18),
@@ -612,7 +612,7 @@ class _OverviewCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
+        border: Border.all(color: color.withOpacity(0.2)),
       ),
       child: Column(
         children: [
@@ -665,7 +665,7 @@ class _LevelBarItem extends StatelessWidget {
             width: 36,
             height: 36,
             decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.15),
+              color: color.withOpacity(0.15),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Center(
@@ -770,9 +770,9 @@ class _ArmyAreaCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.1),
+          color: color.withOpacity(0.1),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: color.withValues(alpha: 0.3)),
+          border: Border.all(color: color.withOpacity(0.3)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -816,7 +816,7 @@ class _ArmyAreaCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.15),
+                color: color.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -879,7 +879,7 @@ class _UnitsListSheet extends StatelessWidget {
                       width: 44,
                       height: 44,
                       decoration: BoxDecoration(
-                        color: AppColors.signalCorps.withValues(alpha: 0.12),
+                        color: AppColors.signalCorps.withOpacity(0.12),
                         borderRadius: BorderRadius.circular(AppSizes.radiusM),
                       ),
                       child: const Icon(
@@ -947,7 +947,7 @@ class _UnitsListSheet extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.background,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: unit.color.withValues(alpha: 0.2)),
+              border: Border.all(color: unit.color.withOpacity(0.2)),
             ),
             child: Row(
               children: [
@@ -955,7 +955,7 @@ class _UnitsListSheet extends StatelessWidget {
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: unit.color.withValues(alpha: 0.12),
+                    color: unit.color.withOpacity(0.12),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -1034,7 +1034,7 @@ class _UnitsListSheet extends StatelessWidget {
                 ),
                 Icon(
                   Icons.chevron_right,
-                  color: unit.color.withValues(alpha: 0.5),
+                  color: unit.color.withOpacity(0.5),
                 ),
               ],
             ),

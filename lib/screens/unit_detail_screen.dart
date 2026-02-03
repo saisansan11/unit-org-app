@@ -105,7 +105,7 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
                     end: Alignment.bottomCenter,
                     colors: [
                       unit.color,
-                      unit.color.withValues(alpha: 0.8),
+                      unit.color.withOpacity(0.8),
                     ],
                   ),
                 ),
@@ -122,7 +122,7 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
                               width: 60,
                               height: 60,
                               decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.2),
+                                color: Colors.white.withOpacity(0.2),
                                 shape: BoxShape.circle,
                                 border: Border.all(color: Colors.white, width: 2),
                               ),
@@ -143,7 +143,7 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
                                       vertical: 4,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withValues(alpha: 0.2),
+                                      color: Colors.white.withOpacity(0.2),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Text(
@@ -310,7 +310,7 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
                                   width: 24,
                                   height: 24,
                                   decoration: BoxDecoration(
-                                    color: unit.color.withValues(alpha: 0.15),
+                                    color: unit.color.withOpacity(0.15),
                                     shape: BoxShape.circle,
                                   ),
                                   child: Center(
@@ -393,7 +393,7 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
         border: Border.all(color: AppColors.border),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -432,12 +432,12 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            areaInfo.color.withValues(alpha: 0.15),
-            areaInfo.color.withValues(alpha: 0.05),
+            areaInfo.color.withOpacity(0.15),
+            areaInfo.color.withOpacity(0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: areaInfo.color.withValues(alpha: 0.3)),
+        border: Border.all(color: areaInfo.color.withOpacity(0.3)),
       ),
       child: Row(
         children: [
@@ -505,9 +505,9 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: unit.color.withValues(alpha: 0.08),
+          color: unit.color.withOpacity(0.08),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: unit.color.withValues(alpha: 0.2)),
+          border: Border.all(color: unit.color.withOpacity(0.2)),
         ),
         child: Row(
           children: [
@@ -515,7 +515,7 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: unit.color.withValues(alpha: 0.15),
+                color: unit.color.withOpacity(0.15),
                 shape: BoxShape.circle,
               ),
               child: Center(
@@ -564,7 +564,7 @@ class _UnitDetailScreenState extends State<UnitDetailScreen> {
             ),
             Icon(
               Icons.chevron_right,
-              color: unit.color.withValues(alpha: 0.5),
+              color: unit.color.withOpacity(0.5),
             ),
           ],
         ),

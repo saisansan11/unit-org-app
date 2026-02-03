@@ -118,7 +118,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: AppColors.accentPink.withValues(alpha: 0.1),
+                color: AppColors.accentPink.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -167,10 +167,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           margin: const EdgeInsets.all(16),
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: AppColors.accentPink.withValues(alpha: 0.1),
+            color: AppColors.accentPink.withOpacity(0.1),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.accentPink.withValues(alpha: 0.3),
+              color: AppColors.accentPink.withOpacity(0.3),
             ),
           ),
           child: Row(
@@ -179,7 +179,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 width: 48,
                 height: 48,
                 decoration: BoxDecoration(
-                  color: AppColors.accentPink.withValues(alpha: 0.15),
+                  color: AppColors.accentPink.withOpacity(0.15),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -237,7 +237,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         padding: const EdgeInsets.only(right: 20),
         margin: const EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
-          color: Colors.red.withValues(alpha: 0.15),
+          color: Colors.red.withOpacity(0.15),
           borderRadius: BorderRadius.circular(16),
         ),
         child: const Icon(Icons.delete, color: Colors.red),
@@ -258,7 +258,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               decoration: BoxDecoration(
                 color: AppColors.surface,
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: unit.color.withValues(alpha: 0.2)),
+                border: Border.all(color: unit.color.withOpacity(0.2)),
               ),
               child: Row(
                 children: [
@@ -267,7 +267,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: unit.color.withValues(alpha: 0.12),
+                      color: unit.color.withOpacity(0.12),
                       shape: BoxShape.circle,
                     ),
                     child: Center(
@@ -305,7 +305,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                   vertical: 2,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: unit.color.withValues(alpha: 0.1),
+                                  color: unit.color.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 child: Text(
@@ -384,10 +384,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: unit.color.withValues(alpha: 0.3)),
+        border: Border.all(color: unit.color.withOpacity(0.3)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -406,7 +406,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: unit.color.withValues(alpha: 0.12),
+              color: unit.color.withOpacity(0.12),
               shape: BoxShape.circle,
             ),
             child: Center(
